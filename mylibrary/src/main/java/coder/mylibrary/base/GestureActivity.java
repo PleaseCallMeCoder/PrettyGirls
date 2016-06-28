@@ -6,6 +6,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+
 /**
  * 支持手势的activity
  * Created by oracleen on 2016/6/14.
@@ -28,8 +29,6 @@ public abstract class GestureActivity extends BaseActivity implements View.OnTou
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
-
-        initView();
 
         if (null != getIntent()) {
             handleIntent(getIntent());

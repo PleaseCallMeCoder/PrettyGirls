@@ -7,16 +7,13 @@ import android.view.View;
 /**
  * Created by renlei on 2016/5/23.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     //布局文件ID
     protected abstract int getContentViewId();
 
     //布局中Fragment的ID
     protected abstract int getFragmentContentId();
-
-    //初始化控件
-    protected abstract void initView();
 
     protected <T extends View> T $(int id) {
         return (T) super.findViewById(id);

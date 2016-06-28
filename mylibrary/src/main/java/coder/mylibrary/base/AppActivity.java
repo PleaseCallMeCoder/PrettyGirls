@@ -3,6 +3,7 @@ package coder.mylibrary.base;
 import android.content.Intent;
 import android.os.Bundle;
 
+
 /**
  * Created by renlei on 2016/5/23.
  */
@@ -20,8 +21,6 @@ public abstract class AppActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
-
-        initView();
 
         if (null != getIntent()) {
             handleIntent(getIntent());

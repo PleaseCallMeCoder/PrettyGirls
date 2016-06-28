@@ -9,10 +9,10 @@ import coder.prettygirls.R;
 /**
  * Created by oracleen on 2016/6/21.
  */
-public class HomeFragment extends BaseFragment {
+public class GirlsFragment extends BaseFragment {
 
-    public static HomeFragment getInstance() {
-        HomeFragment mainFragment = new HomeFragment();
+    public static GirlsFragment getInstance() {
+        GirlsFragment mainFragment = new GirlsFragment();
         return mainFragment;
     }
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 /**
  * Created by renlei on 2016/5/23.
  */
@@ -48,5 +49,10 @@ public abstract class BaseFragment extends Fragment {
         View view = inflater.inflate(getLayoutId(), container, false);
         initView(view, savedInstanceState);
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }
