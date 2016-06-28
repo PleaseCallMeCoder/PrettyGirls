@@ -1,11 +1,14 @@
 package coder.prettygirls.home;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +24,7 @@ import coder.mylibrary.base.AppActivity;
 import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
 
-public class HomeActivity extends AppActivity {
+public class HomeActivity extends AppActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -31,6 +34,8 @@ public class HomeActivity extends AppActivity {
     ViewPager mViewPager;
     @BindView(R.id.fab)
     FloatingActionButton mFab;
+    @BindView(R.id.swiperefreshlayout)
+    SwipeRefreshLayout mSwiperefreshlayout;
 
     private List<Fragment> fragments;
     private String[] titles = {"福利", "Android", "iOS"};
@@ -52,6 +57,10 @@ public class HomeActivity extends AppActivity {
         mToolbar.setTitle(R.string.app_name);
         setSupportActionBar(mToolbar);
 
+        mSwiperefreshlayout.setColorSchemeResources(R.color.swipe_color_1, R.color.swipe_color_2, R.color.swipe_color_3, R.color.swipe_color_4);
+        mSwiperefreshlayout.setProgressViewEndTarget(true, 200);
+        mSwiperefreshlayout.setOnRefreshListener(this);
+
         fragments = new ArrayList<>();
         for (String title : titles) {
             fragments.add(GirlsFragment.getInstance());
@@ -72,6 +81,36 @@ public class HomeActivity extends AppActivity {
                 break;
         }
     }
+
+    @Override
+    public void onRefresh() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mHandler.sendEmptyMessage(1);
+            }
+        }).start();
+    }
+
+    //handler
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    mSwiperefreshlayout.setRefreshing(false);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

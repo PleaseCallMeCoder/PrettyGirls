@@ -3,4 +3,9 @@
     <color name="colorPrimary">#795548</color>
     <color name="colorPrimaryDark">#5d4037</color>
     <color name="colorAccent">#ff9800</color>
+    <color name="swipe_color_1">#987456</color>
+    <color name="swipe_color_2">#852741</color>
+    <color name="swipe_color_3">#963852</color>
+    <color name="swipe_color_4">#456123</color>
+    <color name="swipe_background_color">#ffffff</color>
 </resources>
