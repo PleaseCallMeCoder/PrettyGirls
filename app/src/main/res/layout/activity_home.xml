@@ -21,13 +21,6 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:theme="@style/AppTheme.AppBarOverlay"/>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorColor="#FFFFFF">
-        </android.support.design.widget.TabLayout>
-
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_home"/>

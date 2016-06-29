@@ -9,7 +9,11 @@ import coder.prettygirls.BaseView;
 public interface SplashContract {
 
     interface View extends BaseView<Presenter> {
+        void showGirl(String girlUrl);
 
+        void showGirl();
+
+        void animaImg();
     }
 
     interface Presenter extends BasePresenter {

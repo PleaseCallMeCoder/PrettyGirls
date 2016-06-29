@@ -28,20 +28,17 @@ public class HomeActivity extends AppActivity {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.tab_layout)
-    TabLayout mTabLayout;
-    @BindView(R.id.view_pager)
-    ViewPager mViewPager;
     @BindView(R.id.fab)
     FloatingActionButton mFab;
-
-    private List<Fragment> fragments;
-    private String[] titles = {"福利", "Android", "iOS"};
-    private TabFragmentAdapter mAdapter;
 
     @Override
     protected int getContentViewId() {
         return R.layout.activity_home;
+    }
+
+    @Override
+    protected int getFragmentContentId() {
+        return R.id.girls_fragment;
     }
 
     @Override
@@ -54,16 +51,6 @@ public class HomeActivity extends AppActivity {
     protected void initView() {
         mToolbar.setTitle(R.string.app_name);
         setSupportActionBar(mToolbar);
-
-        fragments = new ArrayList<>();
-        for (String title : titles) {
-            fragments.add(GirlsFragment.getInstance());
-        }
-
-        mViewPager.setOffscreenPageLimit(4);
-        mAdapter = new TabFragmentAdapter(getSupportFragmentManager(), fragments, titles);
-        mViewPager.setAdapter(mAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @OnClick(R.id.fab)
@@ -95,6 +82,6 @@ public class HomeActivity extends AppActivity {
 
     @Override
     protected BaseFragment getFirstFragment() {
-        return null;
+        return GirlsFragment.getInstance();
     }
 }

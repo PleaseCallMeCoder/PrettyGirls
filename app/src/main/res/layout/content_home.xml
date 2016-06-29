@@ -10,8 +10,8 @@
     tools:context=".home.HomeActivity"
     tools:showIn="@layout/activity_home">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
+    <FrameLayout
+        android:id="@+id/girls_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"></FrameLayout>
 </LinearLayout>
