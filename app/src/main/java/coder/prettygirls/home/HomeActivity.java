@@ -50,7 +50,6 @@ public class HomeActivity extends AppActivity {
 
     protected void initView() {
         mToolbar.setTitle(R.string.app_name);
-        mToolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(mToolbar);
     }
 
