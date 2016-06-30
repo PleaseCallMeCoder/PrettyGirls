@@ -17,7 +17,7 @@ import coder.prettygirls.R;
 /**
  * Created by oracleen on 2016/6/21.
  */
-public class GirlsFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class GirlsFragment extends BaseFragment implements GirlsContract.View, SwipeRefreshLayout.OnRefreshListener {
 
 
     @BindView(R.id.girls_swiperefreshlayout)

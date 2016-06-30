@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#e91e63</color>
-    <color name="colorPrimaryDark">#c2185b</color>
-    <color name="colorAccent">#ff5252</color>
+    <color name="colorPrimary">#1a1a1a</color>
+    <color name="colorPrimaryDark">#1a1a1a</color>
+    <color name="colorAccent">#ca9f75</color>
     <color name="swipe_color_1">#987456</color>
     <color name="swipe_color_2">#852741</color>
     <color name="swipe_color_3">#963852</color>
