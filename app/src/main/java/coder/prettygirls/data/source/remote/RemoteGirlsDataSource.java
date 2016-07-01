@@ -17,7 +17,7 @@ public class RemoteGirlsDataSource implements GirlsDataSource {
     public void getGirls(int page, int size, final LoadGirlsCallback callback) {
         GirlsRetrofit.getRetrofit()
                 .create(GirlsService.class)
-                .getGirls("福利", page, size)
+                .getGirls("福利", size, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<GirlsBean>() {

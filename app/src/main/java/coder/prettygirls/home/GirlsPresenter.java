@@ -36,14 +36,16 @@ public class GirlsPresenter implements GirlsContract.Presenter {
 
             @Override
             public void onDataNotAvailable() {
-                mView.showNull();
+                if (isFirst) {
+                    mView.showNull();
+                }
             }
         });
     }
 
     @Override
     public void refresh(int size) {
-        mGirlsResponsitory.getGirls(0, size, new GirlsDataSource.LoadGirlsCallback() {
+        mGirlsResponsitory.getGirls(1, 20, new GirlsDataSource.LoadGirlsCallback() {
             @Override
             public void onGirlsLoaded(GirlsBean girlsBean) {
                 mView.stopRefresh(true, girlsBean.getResults());

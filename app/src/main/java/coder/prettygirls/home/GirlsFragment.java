@@ -2,15 +2,13 @@ package coder.prettygirls.home;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewStub;
-import android.widget.Toast;
+
+import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,26 +23,24 @@ import coder.prettygirls.data.bean.GirlsBean;
 /**
  * Created by oracleen on 2016/6/21.
  */
-public class GirlsFragment extends BaseFragment implements GirlsContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class GirlsFragment extends BaseFragment implements GirlsContract.View, SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
 
     public static final String TAG = "GirlsFragment";
 
-    @BindView(R.id.girls_list)
-    RecyclerView mGirlsRecyclerView;
-    @BindView(R.id.girls_swiperefreshlayout)
-    SwipeRefreshLayout mSwiperefreshlayout;
     @BindView(R.id.network_error_layout)
     ViewStub mNetworkErrorLayout;
+    @BindView(R.id.girls_recycler_view)
+    EasyRecyclerView mGirlsRecyclerView;
 
     private View networkErrorView;
 
     private List<GirlsBean.ResultsEntity> datas;
-    private AdapterOfGirls mAdapter;
+    private GirlsAdapter mAdapter;
     private StaggeredGridLayoutManager mLayoutManager;
 
     private GirlsPresenter mPresenter;
     private int page = 0;
-    private int size = 10;
+    private int size = 20;
     private int latestSize = 0;
 
     private Unbinder unbinder;
@@ -81,74 +77,48 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
 
         mPresenter = new GirlsPresenter(this);
 
-        //swiperefreshlayout
-        mSwiperefreshlayout.setColorSchemeResources(R.color.swipe_color_1, R.color.swipe_color_2, R.color.swipe_color_3, R.color.swipe_color_4);
-        mSwiperefreshlayout.setProgressViewEndTarget(true, 200);
-        mSwiperefreshlayout.setOnRefreshListener(this);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mGirlsRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-//        mLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
-        mGirlsRecyclerView.setLayoutManager(mLayoutManager);
-
-        mGirlsRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        //自动加载
-        mGirlsRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                int[] visibleItems = mLayoutManager.findLastVisibleItemPositions(null);
-                int lastitem = Math.max(visibleItems[0], visibleItems[1]);
-                int totalItemCount = mLayoutManager.getItemCount();
-                if (dy > 0 && lastitem > totalItemCount - 5 && !false) {
-                    if (latestSize >= 10) {
-                        mPresenter.getGirls(page++, 10);
-                        Log.e(TAG, "page:  " + page);
-                    } else {
-                        Log.e(TAG, "没有数据了");
-                    }
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mPresenter.getGirls(page++, 10);
-        Log.e(TAG, "page:  " + page);
+        page++;
+        mPresenter.getGirls(page, size);
     }
 
     @Override
     public void showNull() {
         showNetError();
+        mGirlsRecyclerView.showError();
     }
 
     @Override
     public void showGirls(boolean isFirst, List<GirlsBean.ResultsEntity> results) {
         latestSize = results.size();
         if (isFirst) {
-            Log.e(TAG, "size:  " + results.size());
-            // specify an adapter
             datas = new ArrayList<>();
             datas.addAll(results);
-            mAdapter = new AdapterOfGirls(mActivity, results);
+            mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+            mGirlsRecyclerView.setLayoutManager(mLayoutManager);
+            mAdapter = new GirlsAdapter(mActivity);
             mGirlsRecyclerView.setAdapter(mAdapter);
-            mAdapter.setOnItemClickListener(new AdapterOfGirls.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    Toast.makeText(mActivity, "" + position, Toast.LENGTH_SHORT).show();
-                }
-            });
+            mGirlsRecyclerView.setRefreshListener(GirlsFragment.this);
+            mAdapter.addAll(results);
+            dealWithAdapter(mAdapter);
         } else {
             datas.addAll(results);
-            mAdapter.notifyDataSetChanged();
+            mAdapter.clear();
+            mAdapter.addAll(datas);
         }
+    }
+
+    private void dealWithAdapter(final RecyclerArrayAdapter<GirlsBean.ResultsEntity> adapter) {
+        mGirlsRecyclerView.setAdapterWithProgress(adapter);
+
+        adapter.setMore(R.layout.load_more_layout, GirlsFragment.this);
+        adapter.setNoMore(R.layout.no_more_layout);
+        adapter.setError(R.layout.error_layout);
+        adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+            }
+        });
     }
 
     @Override
@@ -159,12 +129,20 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
 
     @Override
     public void stopRefresh(boolean hasData, List<GirlsBean.ResultsEntity> results) {
-        mSwiperefreshlayout.setRefreshing(false);
         if (hasData) {
             latestSize = results.size();
+            mAdapter.clear();
             datas.clear();
             datas.addAll(results);
-            mAdapter.notifyDataSetChanged();
+            mAdapter.addAll(datas);
+        }
+    }
+
+    @Override
+    public void onLoadMore() {
+        if (latestSize >= size) {
+            page++;
+            mPresenter.getGirls(page, size);
         }
     }
 
@@ -174,11 +152,4 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
         unbinder.unbind();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 }
