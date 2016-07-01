@@ -12,8 +12,6 @@ public class GirlsPresenter implements GirlsContract.Presenter {
     private GirlsContract.View mView;
     private GirlsResponsitory mGirlsResponsitory;
 
-    private boolean isFirst = true;
-
     public GirlsPresenter(GirlsContract.View view) {
         mView = view;
         mGirlsResponsitory = new GirlsResponsitory();
@@ -29,31 +27,12 @@ public class GirlsPresenter implements GirlsContract.Presenter {
         mGirlsResponsitory.getGirls(page, size, new GirlsDataSource.LoadGirlsCallback() {
             @Override
             public void onGirlsLoaded(GirlsBean girlsBean) {
-                mView.showGirls(isFirst, girlsBean.getResults());
-                if (isFirst)
-                    isFirst = !isFirst;
+
             }
 
             @Override
             public void onDataNotAvailable() {
-                if (isFirst) {
-                    mView.showNull();
-                }
-            }
-        });
-    }
 
-    @Override
-    public void refresh(int size) {
-        mGirlsResponsitory.getGirls(1, 20, new GirlsDataSource.LoadGirlsCallback() {
-            @Override
-            public void onGirlsLoaded(GirlsBean girlsBean) {
-                mView.stopRefresh(true, girlsBean.getResults());
-            }
-
-            @Override
-            public void onDataNotAvailable() {
-                mView.stopRefresh(false, null);
             }
         });
     }

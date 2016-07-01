@@ -27,12 +27,8 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
 
     public static final String TAG = "GirlsFragment";
 
-    @BindView(R.id.network_error_layout)
-    ViewStub mNetworkErrorLayout;
     @BindView(R.id.girls_recycler_view)
     EasyRecyclerView mGirlsRecyclerView;
-
-    private View networkErrorView;
 
     private List<GirlsBean.ResultsEntity> datas;
     private GirlsAdapter mAdapter;
@@ -55,22 +51,6 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
         return mainFragment;
     }
 
-    private void showNetError() {
-        // not repeated infalte
-        if (networkErrorView != null) {
-            networkErrorView.setVisibility(View.VISIBLE);
-            return;
-        }
-
-        networkErrorView = mNetworkErrorLayout.inflate();
-    }
-
-    private void showNormal() {
-        if (networkErrorView != null) {
-            networkErrorView.setVisibility(View.GONE);
-        }
-    }
-
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         unbinder = ButterKnife.bind(this, view);
@@ -83,7 +63,6 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
 
     @Override
     public void showNull() {
-        showNetError();
         mGirlsRecyclerView.showError();
     }
 
