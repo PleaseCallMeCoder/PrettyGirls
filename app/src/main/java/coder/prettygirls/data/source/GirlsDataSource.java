@@ -1,7 +1,5 @@
 package coder.prettygirls.data.source;
 
-import java.util.List;
-
 import coder.prettygirls.data.bean.GirlsBean;
 
 /**
@@ -11,19 +9,12 @@ public interface GirlsDataSource {
 
     interface LoadGirlsCallback {
 
-        void onGirlsLoaded(List<GirlsBean> tasks);
+        void onGirlsLoaded(GirlsBean girlsBean);
 
         void onDataNotAvailable();
     }
 
-    interface GetGirlCallback {
+    void getGirls(int page, int size, LoadGirlsCallback callback);
 
-        void onGirlLoaded(GirlsBean task);
-
-        void onDataNotAvailable();
-    }
-
-    void getGirls(LoadGirlsCallback callback);
-
-    void getGirl(GetGirlCallback callback);
+    void getGirl(LoadGirlsCallback callback);
 }

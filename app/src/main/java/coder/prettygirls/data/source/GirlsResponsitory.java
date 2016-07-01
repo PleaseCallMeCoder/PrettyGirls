@@ -17,12 +17,12 @@ public class GirlsResponsitory implements GirlsDataSource {
     }
 
     @Override
-    public void getGirls(LoadGirlsCallback callback) {
-        mRemoteGirlsDataSource.getGirls(callback);
+    public void getGirls(int page, int size, LoadGirlsCallback callback) {
+        mRemoteGirlsDataSource.getGirls(page, size, callback);
     }
 
     @Override
-    public void getGirl(GetGirlCallback callback) {
+    public void getGirl(LoadGirlsCallback callback) {
         mRemoteGirlsDataSource.getGirl(callback);
     }
 

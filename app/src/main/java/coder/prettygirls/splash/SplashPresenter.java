@@ -19,10 +19,11 @@ public class SplashPresenter implements SplashContract.Presenter {
 
     @Override
     public void start() {
-        mResponsitory.getGirl(new GirlsDataSource.GetGirlCallback() {
+        mResponsitory.getGirl(new GirlsDataSource.LoadGirlsCallback() {
+
             @Override
-            public void onGirlLoaded(GirlsBean task) {
-                mView.showGirl(task.getResults().get(0).getUrl());
+            public void onGirlsLoaded(GirlsBean girlsBean) {
+                mView.showGirl(girlsBean.getResults().get(0).getUrl());
                 mView.animaImg();
             }
 
@@ -31,6 +32,7 @@ public class SplashPresenter implements SplashContract.Presenter {
                 mView.showGirl();
                 mView.animaImg();
             }
+
         });
     }
 }

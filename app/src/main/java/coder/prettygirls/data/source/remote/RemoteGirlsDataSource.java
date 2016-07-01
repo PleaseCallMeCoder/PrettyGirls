@@ -14,15 +14,10 @@ import rx.schedulers.Schedulers;
 public class RemoteGirlsDataSource implements GirlsDataSource {
 
     @Override
-    public void getGirls(LoadGirlsCallback callback) {
-
-    }
-
-    @Override
-    public void getGirl(final GetGirlCallback callback) {
+    public void getGirls(int page, int size, final LoadGirlsCallback callback) {
         GirlsRetrofit.getRetrofit()
                 .create(GirlsService.class)
-                .getGirls("福利", 1, 1)
+                .getGirls("福利", page, size)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<GirlsBean>() {
@@ -38,8 +33,13 @@ public class RemoteGirlsDataSource implements GirlsDataSource {
 
                     @Override
                     public void onNext(GirlsBean girlsBean) {
-                        callback.onGirlLoaded(girlsBean);
+                        callback.onGirlsLoaded(girlsBean);
                     }
                 });
+    }
+
+    @Override
+    public void getGirl(final LoadGirlsCallback callback) {
+        getGirls(1, 1, callback);
     }
 }

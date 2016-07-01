@@ -4,12 +4,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/swipe_background_color"
     android:orientation="horizontal">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/girls_list"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
+
+        <ViewStub
+            android:id="@+id/network_error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/network_error"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/girls_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="3dp"
+            android:scrollbars="none"></android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

@@ -9,12 +9,14 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
 import coder.prettygirls.R;
-import coder.prettygirls.app.GlideRoundTransform;
+import coder.prettygirls.data.bean.GirlsBean;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class AdapterOfGirls extends RecyclerView.Adapter<AdapterOfGirls.ViewHolder> {
 
-    private String[] mDataset;
+    private List<GirlsBean.ResultsEntity> mDataset;
     private Context mContext;
 
     private OnItemClickListener listener;
@@ -33,14 +35,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(Context context, String[] myDataset) {
+    public AdapterOfGirls(Context context, List<GirlsBean.ResultsEntity> myDataset) {
         mContext = context;
         mDataset = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterOfGirls.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_girl, parent, false);
         // set the view's size, margins, paddings and layout parameters
@@ -53,7 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Glide.with(mContext).load(mDataset[position]).into(holder.girlImg);
+        Glide.with(mContext).load(mDataset.get(position).getUrl()).into(holder.girlImg);
 
         if (listener != null) {
             holder.girlImg.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 
     public interface OnItemClickListener {

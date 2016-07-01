@@ -8,12 +8,12 @@ import coder.prettygirls.data.source.GirlsDataSource;
 public class LocalGirlsDataSource implements GirlsDataSource {
 
     @Override
-    public void getGirls(LoadGirlsCallback callback) {
+    public void getGirls(int page, int size, LoadGirlsCallback callback) {
 
     }
 
     @Override
-    public void getGirl(GetGirlCallback callback) {
+    public void getGirl(LoadGirlsCallback callback) {
 
     }
 }
