@@ -1,7 +1,10 @@
 package coder.prettygirls.home;
 
+import java.util.List;
+
 import coder.prettygirls.BasePresenter;
 import coder.prettygirls.BaseView;
+import coder.prettygirls.data.bean.GirlsBean;
 
 /**
  * Created by oracleen on 2016/6/29.
@@ -9,10 +12,14 @@ import coder.prettygirls.BaseView;
 public interface GirlsContract {
 
     interface View extends BaseView {
+        void refresh(List<GirlsBean.ResultsEntity> datas);
 
+        void load(List<GirlsBean.ResultsEntity> datas);
+
+        void showError();
     }
 
     interface Presenter extends BasePresenter {
-        void getGirls(int page, int size);
+        void getGirls(int page, int size, boolean isRefresh);
     }
 }

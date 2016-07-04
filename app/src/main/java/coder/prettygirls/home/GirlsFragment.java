@@ -1,11 +1,11 @@
 package coder.prettygirls.home;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewStub;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -30,14 +30,12 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
     @BindView(R.id.girls_recycler_view)
     EasyRecyclerView mGirlsRecyclerView;
 
-    private List<GirlsBean.ResultsEntity> datas;
+    private List<GirlsBean.ResultsEntity> data;
     private GirlsAdapter mAdapter;
-    private StaggeredGridLayoutManager mLayoutManager;
 
     private GirlsPresenter mPresenter;
-    private int page = 0;
+    private int page = 1;
     private int size = 20;
-    private int latestSize = 0;
 
     private Unbinder unbinder;
 
@@ -57,72 +55,65 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
 
         mPresenter = new GirlsPresenter(this);
 
-        page++;
-        mPresenter.getGirls(page, size);
+        initRecyclerView();
+
+        //初始化数据
+        mPresenter.start();
     }
 
-    @Override
-    public void showNull() {
-        mGirlsRecyclerView.showError();
-    }
+    private void initRecyclerView() {
+        data = new ArrayList<>();
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mGirlsRecyclerView.setLayoutManager(staggeredGridLayoutManager);
+        mAdapter = new GirlsAdapter(getContext());
 
-    @Override
-    public void showGirls(boolean isFirst, List<GirlsBean.ResultsEntity> results) {
-        latestSize = results.size();
-        if (isFirst) {
-            datas = new ArrayList<>();
-            datas.addAll(results);
-            mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-            mGirlsRecyclerView.setLayoutManager(mLayoutManager);
-            mAdapter = new GirlsAdapter(mActivity);
-            mGirlsRecyclerView.setAdapter(mAdapter);
-            mGirlsRecyclerView.setRefreshListener(GirlsFragment.this);
-            mAdapter.addAll(results);
-            dealWithAdapter(mAdapter);
-        } else {
-            datas.addAll(results);
-            mAdapter.clear();
-            mAdapter.addAll(datas);
-        }
-    }
+        mGirlsRecyclerView.setAdapterWithProgress(mAdapter);
 
-    private void dealWithAdapter(final RecyclerArrayAdapter<GirlsBean.ResultsEntity> adapter) {
-        mGirlsRecyclerView.setAdapterWithProgress(adapter);
-
-        adapter.setMore(R.layout.load_more_layout, GirlsFragment.this);
-        adapter.setNoMore(R.layout.no_more_layout);
-        adapter.setError(R.layout.error_layout);
-        adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+        mAdapter.setMore(R.layout.load_more_layout, this);
+        mAdapter.setNoMore(R.layout.no_more_layout);
+        mAdapter.setError(R.layout.error_layout);
+        mAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                Snackbar.make(mGirlsRecyclerView, "location---" + position, Snackbar.LENGTH_LONG).show();
             }
         });
+
+        mGirlsRecyclerView.setRefreshListener(this);
     }
 
     @Override
     public void onRefresh() {
-        mPresenter.refresh(size);
-        page = 0;
-    }
-
-    @Override
-    public void stopRefresh(boolean hasData, List<GirlsBean.ResultsEntity> results) {
-        if (hasData) {
-            latestSize = results.size();
-            mAdapter.clear();
-            datas.clear();
-            datas.addAll(results);
-            mAdapter.addAll(datas);
-        }
+        mPresenter.getGirls(1, size, true);
+        page = 1;
     }
 
     @Override
     public void onLoadMore() {
-        if (latestSize >= size) {
+        if (data.size() % 20 == 0) {
+            Log.e(TAG, "onloadmore");
             page++;
-            mPresenter.getGirls(page, size);
+            mPresenter.getGirls(page, size, false);
         }
+    }
+
+    @Override
+    public void refresh(List<GirlsBean.ResultsEntity> datas) {
+        mAdapter.clear();
+        data.clear();
+        data.addAll(datas);
+        mAdapter.addAll(data);
+    }
+
+    @Override
+    public void load(List<GirlsBean.ResultsEntity> datas) {
+        data.addAll(datas);
+        mAdapter.addAll(data);
+    }
+
+    @Override
+    public void showError() {
+        mGirlsRecyclerView.showError();
     }
 
     @Override
@@ -130,5 +121,4 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
         super.onDestroyView();
         unbinder.unbind();
     }
-
 }
