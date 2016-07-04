@@ -1,5 +1,8 @@
 package coder.prettygirls.data.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -43,7 +46,7 @@ public class GirlsBean {
         return results;
     }
 
-    public static class ResultsEntity {
+    public static class ResultsEntity implements Parcelable {
         private String _id;
         private String createdAt;
         private String desc;
@@ -125,5 +128,50 @@ public class GirlsBean {
         public String getWho() {
             return who;
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this._id);
+            dest.writeString(this.createdAt);
+            dest.writeString(this.desc);
+            dest.writeString(this.publishedAt);
+            dest.writeString(this.source);
+            dest.writeString(this.type);
+            dest.writeString(this.url);
+            dest.writeByte(this.used ? (byte) 1 : (byte) 0);
+            dest.writeString(this.who);
+        }
+
+        public ResultsEntity() {
+        }
+
+        protected ResultsEntity(Parcel in) {
+            this._id = in.readString();
+            this.createdAt = in.readString();
+            this.desc = in.readString();
+            this.publishedAt = in.readString();
+            this.source = in.readString();
+            this.type = in.readString();
+            this.url = in.readString();
+            this.used = in.readByte() != 0;
+            this.who = in.readString();
+        }
+
+        public static final Parcelable.Creator<ResultsEntity> CREATOR = new Parcelable.Creator<ResultsEntity>() {
+            @Override
+            public ResultsEntity createFromParcel(Parcel source) {
+                return new ResultsEntity(source);
+            }
+
+            @Override
+            public ResultsEntity[] newArray(int size) {
+                return new ResultsEntity[size];
+            }
+        };
     }
 }

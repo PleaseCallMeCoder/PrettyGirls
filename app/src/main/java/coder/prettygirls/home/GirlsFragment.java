@@ -1,5 +1,6 @@
 package coder.prettygirls.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,6 +20,7 @@ import butterknife.Unbinder;
 import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
 import coder.prettygirls.data.bean.GirlsBean;
+import coder.prettygirls.girl.GirlActivity;
 
 /**
  * Created by oracleen on 2016/6/21.
@@ -30,7 +32,7 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
     @BindView(R.id.girls_recycler_view)
     EasyRecyclerView mGirlsRecyclerView;
 
-    private List<GirlsBean.ResultsEntity> data;
+    private ArrayList<GirlsBean.ResultsEntity> data;
     private GirlsAdapter mAdapter;
 
     private GirlsPresenter mPresenter;
@@ -75,7 +77,10 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
         mAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Snackbar.make(mGirlsRecyclerView, "location---" + position, Snackbar.LENGTH_LONG).show();
+                Intent intent = new Intent(mActivity, GirlActivity.class);
+                intent.putParcelableArrayListExtra("girls", data);
+                intent.putExtra("current", position);
+                startActivity(intent);
             }
         });
 
@@ -91,7 +96,7 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
     @Override
     public void onLoadMore() {
         if (data.size() % 20 == 0) {
-            Log.e(TAG, "onloadmore");
+            Log.d(TAG, "onloadmore");
             page++;
             mPresenter.getGirls(page, size, false);
         }

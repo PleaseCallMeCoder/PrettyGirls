@@ -1,5 +1,6 @@
 package coder.prettygirls.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,6 +24,7 @@ import butterknife.OnClick;
 import coder.mylibrary.base.AppActivity;
 import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
+import coder.prettygirls.about.AboutActivity;
 
 public class HomeActivity extends AppActivity {
 
@@ -74,6 +76,8 @@ public class HomeActivity extends AppActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
+            startActivity(intent);
             return true;
         }
 

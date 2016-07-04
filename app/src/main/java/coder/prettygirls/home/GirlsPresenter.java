@@ -28,7 +28,7 @@ public class GirlsPresenter implements GirlsContract.Presenter {
 
     @Override
     public void getGirls(int page, int size, final boolean isRefresh) {
-        Log.e(TAG, "getGirls");
+        Log.d(TAG, "getGirls");
         mGirlsResponsitory.getGirls(page, size, new GirlsDataSource.LoadGirlsCallback() {
             @Override
             public void onGirlsLoaded(GirlsBean girlsBean) {
