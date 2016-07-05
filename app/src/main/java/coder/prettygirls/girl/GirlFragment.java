@@ -2,11 +2,19 @@ package coder.prettygirls.girl;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.graphics.Palette;
 import android.view.View;
+import android.view.Window;
 
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 
@@ -18,6 +26,8 @@ import butterknife.Unbinder;
 import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
 import coder.prettygirls.data.bean.GirlsBean;
+import coder.prettygirls.util.BitmapUtil;
+import coder.prettygirls.util.ColorUtil;
 import coder.prettygirls.weight.PinchImageView;
 
 /**
@@ -80,6 +90,7 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
         mAdapter = new GirlAdapter(mActivity, datas);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setCurrentItem(current);
+        mViewPager.setOnPageChangeListener(this);
     }
 
     @Override
@@ -89,12 +100,22 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
 
     @Override
     public void onPageSelected(int position) {
-        Bitmap bitmap = ((GlideBitmapDrawable) getCurrentImageView().getDrawable()).getBitmap();
+        getColor();
+    }
+
+    /**
+     * 根据图片获得主题色
+     */
+    private void getColor() {
+        PinchImageView imageView = getCurrentImageView();
+        Bitmap bitmap = BitmapUtil.drawableToBitmap(imageView.getDrawable());
         Palette.Builder builder = Palette.from(bitmap);
         builder.generate(new Palette.PaletteAsyncListener() {
             @Override
             public void onGenerated(Palette palette) {
-                Palette.Swatch vir = palette.getVibrantSwatch();
+                Palette.Swatch vir = palette.getLightMutedSwatch();
+                if (vir == null)
+                    return;
                 mListener.change(vir.getRgb());
             }
         });

@@ -1,5 +1,6 @@
 package coder.prettygirls.girl;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,7 @@ import butterknife.ButterKnife;
 import coder.mylibrary.base.AppActivity;
 import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
+import coder.prettygirls.util.ColorUtil;
 
 /**
  * Created by oracleen on 2016/7/4.
@@ -57,8 +59,8 @@ public class GirlActivity extends AppActivity implements GirlFragment.OnGirlChan
         mToolbar.setBackgroundColor(color);
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = getWindow();
-            window.setStatusBarColor(color);
-            window.setNavigationBarColor(color);
+            window.setStatusBarColor(ColorUtil.colorBurn(color));
+            window.setNavigationBarColor(ColorUtil.colorBurn(color));
         }
     }
 }
