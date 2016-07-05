@@ -113,7 +113,8 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
         builder.generate(new Palette.PaletteAsyncListener() {
             @Override
             public void onGenerated(Palette palette) {
-                Palette.Swatch vir = palette.getLightMutedSwatch();
+//                Palette.Swatch vir = palette.getLightMutedSwatch();
+                Palette.Swatch vir = palette.getVibrantSwatch();
                 if (vir == null)
                     return;
                 mListener.change(vir.getRgb());

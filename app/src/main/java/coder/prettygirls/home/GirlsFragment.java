@@ -104,16 +104,16 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
 
     @Override
     public void refresh(List<GirlsBean.ResultsEntity> datas) {
-        mAdapter.clear();
         data.clear();
         data.addAll(datas);
-        mAdapter.addAll(data);
+        mAdapter.clear();
+        mAdapter.addAll(datas);
     }
 
     @Override
     public void load(List<GirlsBean.ResultsEntity> datas) {
         data.addAll(datas);
-        mAdapter.addAll(data);
+        mAdapter.addAll(datas);
     }
 
     @Override
