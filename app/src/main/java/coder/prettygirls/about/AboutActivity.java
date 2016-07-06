@@ -43,4 +43,10 @@ public class AboutActivity extends GestureActivity {
     public void onClick(View v) {
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_right_out);
+    }
 }
