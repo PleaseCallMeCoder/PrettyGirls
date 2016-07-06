@@ -4,6 +4,7 @@ import android.app.Application;
 
 import java.util.concurrent.TimeUnit;
 
+import coder.prettygirls.app.exception.LocalFileHandler;
 import coder.prettygirls.util.LogUtil;
 import coder.prettygirls.util.ToastUtil;
 import okhttp3.OkHttpClient;
@@ -23,6 +24,9 @@ public class MyApplication extends Application {
 
         //配置时候显示toast
         ToastUtil.isShow = true;
+
+        //配置程序异常退出处理
+        new LocalFileHandler(this);
     }
 
     public static OkHttpClient defaultOkHttpClient() {

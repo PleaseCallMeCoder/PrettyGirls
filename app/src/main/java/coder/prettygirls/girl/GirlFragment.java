@@ -2,21 +2,11 @@ package coder.prettygirls.girl;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.PixelFormat;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.graphics.Palette;
 import android.view.View;
-import android.view.Window;
-
-import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 
 import java.util.ArrayList;
 
@@ -27,8 +17,7 @@ import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
 import coder.prettygirls.data.bean.GirlsBean;
 import coder.prettygirls.util.BitmapUtil;
-import coder.prettygirls.util.ColorUtil;
-import coder.prettygirls.weight.PinchImageView;
+import coder.prettygirls.widget.PinchImageView;
 
 /**
  * Created by oracleen on 2016/7/4.

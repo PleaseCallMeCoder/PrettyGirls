@@ -1,4 +1,4 @@
-package coder.prettygirls.weight;
+package coder.prettygirls.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

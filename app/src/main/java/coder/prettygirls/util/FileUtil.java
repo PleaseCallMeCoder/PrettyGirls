@@ -1,5 +1,8 @@
 package coder.prettygirls.util;
 
+import android.content.Context;
+import android.os.Environment;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -150,5 +153,22 @@ public class FileUtil {
         } else {
             return delFile(source);
         }
+    }
+
+    /**
+     * 获取缓存文件夹
+     *
+     * @param context
+     * @return
+     */
+    public static String getDiskCacheDir(Context context) {
+        String cachePath;
+        //isExternalStorageEmulated()设备的外存是否是用内存模拟的，是则返回true
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageEmulated()) {
+            cachePath = context.getExternalCacheDir().getAbsolutePath();
+        } else {
+            cachePath = context.getCacheDir().getAbsolutePath();
+        }
+        return cachePath;
     }
 }
