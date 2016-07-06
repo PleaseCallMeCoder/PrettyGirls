@@ -5,6 +5,7 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 
 /**
+ * bitmap处理工具类
  * Created by oracleen on 2016/7/5.
  */
 public class BitmapUtil {

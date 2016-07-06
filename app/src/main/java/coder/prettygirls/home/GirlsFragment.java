@@ -21,6 +21,7 @@ import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
 import coder.prettygirls.data.bean.GirlsBean;
 import coder.prettygirls.girl.GirlActivity;
+import coder.prettygirls.util.LogUtil;
 
 /**
  * Created by oracleen on 2016/6/21.
@@ -96,7 +97,7 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
     @Override
     public void onLoadMore() {
         if (data.size() % 20 == 0) {
-            Log.d(TAG, "onloadmore");
+            LogUtil.d(TAG, "onloadmore");
             page++;
             mPresenter.getGirls(page, size, false);
         }

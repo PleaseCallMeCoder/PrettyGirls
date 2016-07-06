@@ -3,6 +3,7 @@ package coder.prettygirls.util;
 import android.graphics.Color;
 
 /**
+ * 颜色处理工具类
  * Created by oracleen on 2016/7/5.
  */
 public class ColorUtil {

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/coder/prettygirls/util/ColorsUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/coder/prettygirls/util/DateUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/coder/prettygirls/util/DensityUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/coder/prettygirls/util/ExitActivityUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/coder/prettygirls/util/NetUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/coder/prettygirls/util/PhoneUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/coder/prettygirls/util/SDCardUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/coder/prettygirls/util/ScreenUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/coder/prettygirls/util/ShortCutUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/coder/prettygirls/util/StringUtil.java" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

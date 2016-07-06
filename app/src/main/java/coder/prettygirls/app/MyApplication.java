@@ -4,6 +4,8 @@ import android.app.Application;
 
 import java.util.concurrent.TimeUnit;
 
+import coder.prettygirls.util.LogUtil;
+import coder.prettygirls.util.ToastUtil;
 import okhttp3.OkHttpClient;
 
 
@@ -15,6 +17,12 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //配置是否显示log
+        LogUtil.isDebug = true;
+
+        //配置时候显示toast
+        ToastUtil.isShow = true;
     }
 
     public static OkHttpClient defaultOkHttpClient() {
