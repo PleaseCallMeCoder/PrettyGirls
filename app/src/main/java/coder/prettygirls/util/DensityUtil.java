@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.TypedValue;
 
 /**
- * ��λת����
+ * 单位转换类
  */
 public class DensityUtil {
 
@@ -16,7 +16,7 @@ public class DensityUtil {
     }
 
     /**
-     * dpתpx
+     * dp转px
      *
      * @param context
      * @param dpVal
@@ -28,7 +28,7 @@ public class DensityUtil {
     }
 
     /**
-     * spתpx
+     * sp转px
      *
      * @param context
      * @param spVal
@@ -40,7 +40,7 @@ public class DensityUtil {
     }
 
     /**
-     * pxתdp
+     * px转dp
      *
      * @param context
      * @param pxVal
@@ -52,7 +52,7 @@ public class DensityUtil {
     }
 
     /**
-     * pxתsp
+     * px转sp
      *
      * @param context
      * @param pxVal

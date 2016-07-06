@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 /**
- * ÆÁÄ»Ïà¹Ø¸¨ÖúÀà
+ * å±å¹•ç›¸å…³è¾…åŠ©ç±»
  */
 public class ScreenUtil {
 
@@ -19,7 +19,7 @@ public class ScreenUtil {
     }
 
     /**
-     * »ñµÃÆÁÄ»¿í¶È
+     * è·å¾—å±å¹•å®½åº¦
      *
      * @param context
      * @return
@@ -33,7 +33,7 @@ public class ScreenUtil {
     }
 
     /**
-     * »ñµÃÆÁÄ»¸ß¶È
+     * è·å¾—å±å¹•é«˜åº¦
      *
      * @param context
      * @return
@@ -47,7 +47,7 @@ public class ScreenUtil {
     }
 
     /**
-     * »ñµÃ×´Ì¬À¸µÄ¸ß¶È
+     * è·å¾—çŠ¶æ€æ çš„é«˜åº¦
      *
      * @param context
      * @return
@@ -68,7 +68,7 @@ public class ScreenUtil {
     }
 
     /**
-     * »ñÈ¡µ±Ç°ÆÁÄ»½ØÍ¼£¬°üº¬×´Ì¬À¸
+     * è·å–å½“å‰å±å¹•æˆªå›¾ï¼ŒåŒ…å«çŠ¶æ€æ 
      *
      * @param activity
      * @return
@@ -87,7 +87,7 @@ public class ScreenUtil {
     }
 
     /**
-     * »ñÈ¡µ±Ç°ÆÁÄ»½ØÍ¼£¬²»°üº¬×´Ì¬À¸
+     * è·å–å½“å‰å±å¹•æˆªå›¾ï¼Œä¸åŒ…å«çŠ¶æ€æ 
      *
      * @param activity
      * @return

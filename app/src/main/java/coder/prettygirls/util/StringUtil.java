@@ -1,4 +1,4 @@
-package utils;
+package coder.prettygirls.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * ×Ö·û´®¹¤¾ßÀà£¬Ìá¹©Ò»Ğ©×Ö·û´®Ïà¹ØµÄ±ã½İ·½·¨
+ * å­—ç¬¦ä¸²å·¥å…·ç±»ï¼Œæä¾›ä¸€äº›å­—ç¬¦ä¸²ç›¸å…³çš„ä¾¿æ·æ–¹æ³•
  */
 public class StringUtil {
 
@@ -122,8 +122,8 @@ public class StringUtil {
     /**
      * encoded in utf-8
      *
-     * @param str ×Ö·û´®
-     * @return ·µ»ØÒ»¸öutf8µÄ×Ö·û´®
+     * @param str å­—ç¬¦ä¸²
+     * @return è¿”å›ä¸€ä¸ªutf8çš„å­—ç¬¦ä¸²
      */
     public static String utf8Encode(String str) {
 
@@ -140,8 +140,8 @@ public class StringUtil {
 
 
     /**
-     * @param href ×Ö·û´®
-     * @return ·µ»ØÒ»¸öhtml
+     * @param href å­—ç¬¦ä¸²
+     * @return è¿”å›ä¸€ä¸ªhtml
      */
     public static String getHrefInnerHtml(String href) {
 
@@ -161,8 +161,8 @@ public class StringUtil {
 
 
     /**
-     * @param source ×Ö·û´®
-     * @return ·µ»ØhtmLµ½×Ö·û´®
+     * @param source å­—ç¬¦ä¸²
+     * @return è¿”å›htmLåˆ°å­—ç¬¦ä¸²
      */
     public static String htmlEscapeCharsToString(String source) {
 
@@ -202,8 +202,8 @@ public class StringUtil {
 
 
     /**
-     * @param s ×Ö·û´®
-     * @return ·µ»ØµÄÊıÖµ
+     * @param s å­—ç¬¦ä¸²
+     * @return è¿”å›çš„æ•°å€¼
      */
     public static String halfWidthToFullWidth(String s) {
 
@@ -228,8 +228,8 @@ public class StringUtil {
 
 
     /**
-     * @param str ×ÊÔ´
-     * @return ÌØÊâ×Ö·û´®ÇĞ»»
+     * @param str èµ„æº
+     * @return ç‰¹æ®Šå­—ç¬¦ä¸²åˆ‡æ¢
      */
 
     public static String replaceBlanktihuan(String str) {
@@ -245,9 +245,9 @@ public class StringUtil {
 
 
     /**
-     * ÅĞ¶Ï¸ø¶¨µÄ×Ö·û´®ÊÇ·ñÎªnull»òÕßÊÇ¿ÕµÄ
+     * åˆ¤æ–­ç»™å®šçš„å­—ç¬¦ä¸²æ˜¯å¦ä¸ºnullæˆ–è€…æ˜¯ç©ºçš„
      *
-     * @param string ¸ø¶¨µÄ×Ö·û´®
+     * @param string ç»™å®šçš„å­—ç¬¦ä¸²
      */
     public static boolean isEmpty(String string) {
         return string == null || "".equals(string.trim());
@@ -255,9 +255,9 @@ public class StringUtil {
 
 
     /**
-     * ÅĞ¶Ï¸ø¶¨µÄ×Ö·û´®ÊÇ·ñ²»ÎªnullÇÒ²»Îª¿Õ
+     * åˆ¤æ–­ç»™å®šçš„å­—ç¬¦ä¸²æ˜¯å¦ä¸ä¸ºnullä¸”ä¸ä¸ºç©º
      *
-     * @param string ¸ø¶¨µÄ×Ö·û´®
+     * @param string ç»™å®šçš„å­—ç¬¦ä¸²
      */
     public static boolean isNotEmpty(String string) {
         return !isEmpty(string);
@@ -265,9 +265,9 @@ public class StringUtil {
 
 
     /**
-     * ÅĞ¶Ï¸ø¶¨µÄ×Ö·û´®Êı×éÖĞµÄËùÓĞ×Ö·û´®ÊÇ·ñ¶¼Îªnull»òÕßÊÇ¿ÕµÄ
+     * åˆ¤æ–­ç»™å®šçš„å­—ç¬¦ä¸²æ•°ç»„ä¸­çš„æ‰€æœ‰å­—ç¬¦ä¸²æ˜¯å¦éƒ½ä¸ºnullæˆ–è€…æ˜¯ç©ºçš„
      *
-     * @param strings ¸ø¶¨µÄ×Ö·û´®
+     * @param strings ç»™å®šçš„å­—ç¬¦ä¸²
      */
     public static boolean isEmpty(String... strings) {
         boolean result = true;
@@ -282,10 +282,10 @@ public class StringUtil {
 
 
     /**
-     * ÅĞ¶Ï¸ø¶¨µÄ×Ö·û´®Êı×éÖĞÊÇ·ñÈ«²¿¶¼²»ÎªnullÇÒ²»Îª¿Õ
+     * åˆ¤æ–­ç»™å®šçš„å­—ç¬¦ä¸²æ•°ç»„ä¸­æ˜¯å¦å…¨éƒ¨éƒ½ä¸ä¸ºnullä¸”ä¸ä¸ºç©º
      *
-     * @param strings ¸ø¶¨µÄ×Ö·û´®Êı×é
-     * @return ÊÇ·ñÈ«²¿¶¼²»ÎªnullÇÒ²»Îª¿Õ
+     * @param strings ç»™å®šçš„å­—ç¬¦ä¸²æ•°ç»„
+     * @return æ˜¯å¦å…¨éƒ¨éƒ½ä¸ä¸ºnullä¸”ä¸ä¸ºç©º
      */
     public static boolean isNotEmpty(String... strings) {
         boolean result = true;
@@ -300,7 +300,7 @@ public class StringUtil {
 
 
     /**
-     * Èç¹û×Ö·û´®ÊÇnull»òÕß¿Õ¾Í·µ»Ø""
+     * å¦‚æœå­—ç¬¦ä¸²æ˜¯nullæˆ–è€…ç©ºå°±è¿”å›""
      */
     public static String filterEmpty(String string) {
         return StringUtil.isNotEmpty(string) ? string : "";
@@ -308,12 +308,12 @@ public class StringUtil {
 
 
     /**
-     * ÔÚ¸ø¶¨µÄ×Ö·û´®ÖĞ£¬ÓÃĞÂµÄ×Ö·ûÌæ»»ËùÓĞ¾ÉµÄ×Ö·û
+     * åœ¨ç»™å®šçš„å­—ç¬¦ä¸²ä¸­ï¼Œç”¨æ–°çš„å­—ç¬¦æ›¿æ¢æ‰€æœ‰æ—§çš„å­—ç¬¦
      *
-     * @param string  ¸ø¶¨µÄ×Ö·û´®
-     * @param oldchar ¾ÉµÄ×Ö·û
-     * @param newchar ĞÂµÄ×Ö·û
-     * @return Ìæ»»ºóµÄ×Ö·û´®
+     * @param string  ç»™å®šçš„å­—ç¬¦ä¸²
+     * @param oldchar æ—§çš„å­—ç¬¦
+     * @param newchar æ–°çš„å­—ç¬¦
+     * @return æ›¿æ¢åçš„å­—ç¬¦ä¸²
      */
     public static String replace(String string, char oldchar, char newchar) {
         char chars[] = string.toCharArray();
@@ -328,11 +328,11 @@ public class StringUtil {
 
 
     /**
-     * °Ñ¸ø¶¨µÄ×Ö·û´®ÓÃ¸ø¶¨µÄ×Ö·û·Ö¸î
+     * æŠŠç»™å®šçš„å­—ç¬¦ä¸²ç”¨ç»™å®šçš„å­—ç¬¦åˆ†å‰²
      *
-     * @param string ¸ø¶¨µÄ×Ö·û´®
-     * @param ch     ¸ø¶¨µÄ×Ö·û
-     * @return ·Ö¸îºóµÄ×Ö·û´®Êı×é
+     * @param string ç»™å®šçš„å­—ç¬¦ä¸²
+     * @param ch     ç»™å®šçš„å­—ç¬¦
+     * @return åˆ†å‰²åçš„å­—ç¬¦ä¸²æ•°ç»„
      */
     public static String[] split(String string, char ch) {
         ArrayList<String> stringList = new ArrayList<String>();
@@ -343,13 +343,13 @@ public class StringUtil {
                 stringList.add(new String(chars, nextStart, w - nextStart));
                 nextStart = w + 1;
                 if (nextStart ==
-                        chars.length) {    //µ±×îºóÒ»Î»ÊÇ·Ö¸î·ûµÄ»°£¬¾ÍÔÙÌí¼ÓÒ»¸ö¿ÕµÄ×Ö·û´®µ½·Ö¸îÊı×éÖĞÈ¥
+                        chars.length) {    //å½“æœ€åä¸€ä½æ˜¯åˆ†å‰²ç¬¦çš„è¯ï¼Œå°±å†æ·»åŠ ä¸€ä¸ªç©ºçš„å­—ç¬¦ä¸²åˆ°åˆ†å‰²æ•°ç»„ä¸­å»
                     stringList.add("");
                 }
             }
         }
         if (nextStart <
-                chars.length) {    //Èç¹û×îºóÒ»Î»²»ÊÇ·Ö¸ô·ûµÄ»°£¬¾Í½«×îºóÒ»¸ö·Ö¸î·ûµ½×îºóÒ»¸ö×Ö·ûÖĞ¼äµÄ×óÓÒ×Ö·û´®×÷ÎªÒ»¸ö×Ö·û´®Ìí¼Óµ½·Ö¸îÊı×éÖĞÈ¥
+                chars.length) {    //å¦‚æœæœ€åä¸€ä½ä¸æ˜¯åˆ†éš”ç¬¦çš„è¯ï¼Œå°±å°†æœ€åä¸€ä¸ªåˆ†å‰²ç¬¦åˆ°æœ€åä¸€ä¸ªå­—ç¬¦ä¸­é—´çš„å·¦å³å­—ç¬¦ä¸²ä½œä¸ºä¸€ä¸ªå­—ç¬¦ä¸²æ·»åŠ åˆ°åˆ†å‰²æ•°ç»„ä¸­å»
             stringList.add(new String(chars, nextStart,
                     chars.length - 1 - nextStart + 1));
         }
@@ -358,10 +358,10 @@ public class StringUtil {
 
 
     /**
-     * ¼ÆËã¸ø¶¨µÄ×Ö·û´®µÄ³¤¶È£¬¼ÆËã¹æÔòÊÇ£ºÒ»¸öºº×ÖµÄ³¤¶ÈÎª2£¬Ò»¸ö×Ö·ûµÄ³¤¶ÈÎª1
+     * è®¡ç®—ç»™å®šçš„å­—ç¬¦ä¸²çš„é•¿åº¦ï¼Œè®¡ç®—è§„åˆ™æ˜¯ï¼šä¸€ä¸ªæ±‰å­—çš„é•¿åº¦ä¸º2ï¼Œä¸€ä¸ªå­—ç¬¦çš„é•¿åº¦ä¸º1
      *
-     * @param string ¸ø¶¨µÄ×Ö·û´®
-     * @return ³¤¶È
+     * @param string ç»™å®šçš„å­—ç¬¦ä¸²
+     * @return é•¿åº¦
      */
     public static int countLength(String string) {
         int length = 0;
@@ -381,9 +381,9 @@ public class StringUtil {
 
     private static char[] getChars(char[] chars, int startIndex) {
         int endIndex = startIndex + 1;
-        //Èç¹ûµÚÒ»¸öÊÇÊı×Ö
+        //å¦‚æœç¬¬ä¸€ä¸ªæ˜¯æ•°å­—
         if (Character.isDigit(chars[startIndex])) {
-            //Èç¹ûÏÂÒ»¸öÊÇÊı×Ö
+            //å¦‚æœä¸‹ä¸€ä¸ªæ˜¯æ•°å­—
             while (endIndex < chars.length &&
                     Character.isDigit(chars[endIndex])) {
                 endIndex++;
@@ -396,7 +396,7 @@ public class StringUtil {
 
 
     /**
-     * ÊÇ·ñÈ«ÊÇÊı×Ö
+     * æ˜¯å¦å…¨æ˜¯æ•°å­—
      */
     public static boolean isAllDigital(char[] chars) {
         boolean result = true;
@@ -411,11 +411,11 @@ public class StringUtil {
 
 
     /**
-     * É¾³ı¸ø¶¨×Ö·û´®ÖĞËùÓĞµÄ¾ÉµÄ×Ö·û
+     * åˆ é™¤ç»™å®šå­—ç¬¦ä¸²ä¸­æ‰€æœ‰çš„æ—§çš„å­—ç¬¦
      *
-     * @param string Ô´×Ö·û´®
-     * @param ch     ÒªÉ¾³ıµÄ×Ö·û
-     * @return É¾³ıºóµÄ×Ö·û´®
+     * @param string æºå­—ç¬¦ä¸²
+     * @param ch     è¦åˆ é™¤çš„å­—ç¬¦
+     * @return åˆ é™¤åçš„å­—ç¬¦ä¸²
      */
     public static String removeChar(String string, char ch) {
         StringBuffer sb = new StringBuffer();
@@ -429,10 +429,10 @@ public class StringUtil {
 
 
     /**
-     * É¾³ı¸ø¶¨×Ö·û´®ÖĞ¸ø¶¨Î»ÖÃ´¦µÄ×Ö·û
+     * åˆ é™¤ç»™å®šå­—ç¬¦ä¸²ä¸­ç»™å®šä½ç½®å¤„çš„å­—ç¬¦
      *
-     * @param string ¸ø¶¨×Ö·û´®
-     * @param index  ¸ø¶¨Î»ÖÃ
+     * @param string ç»™å®šå­—ç¬¦ä¸²
+     * @param index  ç»™å®šä½ç½®
      */
     public static String removeChar(String string, int index) {
         String result = null;
@@ -451,11 +451,11 @@ public class StringUtil {
 
 
     /**
-     * É¾³ı¸ø¶¨×Ö·û´®ÖĞ¸ø¶¨Î»ÖÃ´¦µÄ×Ö·û
+     * åˆ é™¤ç»™å®šå­—ç¬¦ä¸²ä¸­ç»™å®šä½ç½®å¤„çš„å­—ç¬¦
      *
-     * @param string ¸ø¶¨×Ö·û´®
-     * @param index  ¸ø¶¨Î»ÖÃ
-     * @param ch     Èç¹ûÍ¬¸ø¶¨Î»ÖÃ´¦µÄ×Ö·ûÏàÍ¬£¬Ôò½«¸ø¶¨Î»ÖÃ´¦µÄ×Ö·ûÉ¾³ı
+     * @param string ç»™å®šå­—ç¬¦ä¸²
+     * @param index  ç»™å®šä½ç½®
+     * @param ch     å¦‚æœåŒç»™å®šä½ç½®å¤„çš„å­—ç¬¦ç›¸åŒï¼Œåˆ™å°†ç»™å®šä½ç½®å¤„çš„å­—ç¬¦åˆ é™¤
      */
     public static String removeChar(String string, int index, char ch) {
         String result = null;
@@ -478,10 +478,10 @@ public class StringUtil {
 
 
     /**
-     * ¶Ô¸ø¶¨µÄ×Ö·û´®½øĞĞ¿Õ°×¹ıÂË
+     * å¯¹ç»™å®šçš„å­—ç¬¦ä¸²è¿›è¡Œç©ºç™½è¿‡æ»¤
      *
-     * @param string ¸ø¶¨µÄ×Ö·û´®
-     * @return Èç¹û¸ø¶¨µÄ×Ö·û´®ÊÇÒ»¸ö¿Õ°××Ö·û´®£¬ÄÇÃ´·µ»Ønull£»·ñÔò·µ»Ø±¾Éí¡£
+     * @param string ç»™å®šçš„å­—ç¬¦ä¸²
+     * @return å¦‚æœç»™å®šçš„å­—ç¬¦ä¸²æ˜¯ä¸€ä¸ªç©ºç™½å­—ç¬¦ä¸²ï¼Œé‚£ä¹ˆè¿”å›nullï¼›å¦åˆ™è¿”å›æœ¬èº«ã€‚
      */
     public static String filterBlank(String string) {
         if ("".equals(string)) {
@@ -493,12 +493,12 @@ public class StringUtil {
 
 
     /**
-     * ½«¸ø¶¨×Ö·û´®ÖĞ¸ø¶¨µÄÇøÓòµÄ×Ö·û×ª»»³ÉĞ¡Ğ´
+     * å°†ç»™å®šå­—ç¬¦ä¸²ä¸­ç»™å®šçš„åŒºåŸŸçš„å­—ç¬¦è½¬æ¢æˆå°å†™
      *
-     * @param str        ¸ø¶¨×Ö·û´®ÖĞ
-     * @param beginIndex ¿ªÊ¼Ë÷Òı£¨°üÀ¨£©
-     * @param endIndex   ½áÊøË÷Òı£¨²»°üÀ¨£©
-     * @return ĞÂµÄ×Ö·û´®
+     * @param str        ç»™å®šå­—ç¬¦ä¸²ä¸­
+     * @param beginIndex å¼€å§‹ç´¢å¼•ï¼ˆåŒ…æ‹¬ï¼‰
+     * @param endIndex   ç»“æŸç´¢å¼•ï¼ˆä¸åŒ…æ‹¬ï¼‰
+     * @return æ–°çš„å­—ç¬¦ä¸²
      */
     public static String toLowerCase(String str, int beginIndex, int endIndex) {
         return str.replaceFirst(str.substring(beginIndex, endIndex),
@@ -508,12 +508,12 @@ public class StringUtil {
 
 
     /**
-     * ½«¸ø¶¨×Ö·û´®ÖĞ¸ø¶¨µÄÇøÓòµÄ×Ö·û×ª»»³É´óĞ´
+     * å°†ç»™å®šå­—ç¬¦ä¸²ä¸­ç»™å®šçš„åŒºåŸŸçš„å­—ç¬¦è½¬æ¢æˆå¤§å†™
      *
-     * @param str        ¸ø¶¨×Ö·û´®ÖĞ
-     * @param beginIndex ¿ªÊ¼Ë÷Òı£¨°üÀ¨£©
-     * @param endIndex   ½áÊøË÷Òı£¨²»°üÀ¨£©
-     * @return ĞÂµÄ×Ö·û´®
+     * @param str        ç»™å®šå­—ç¬¦ä¸²ä¸­
+     * @param beginIndex å¼€å§‹ç´¢å¼•ï¼ˆåŒ…æ‹¬ï¼‰
+     * @param endIndex   ç»“æŸç´¢å¼•ï¼ˆä¸åŒ…æ‹¬ï¼‰
+     * @return æ–°çš„å­—ç¬¦ä¸²
      */
     public static String toUpperCase(String str, int beginIndex, int endIndex) {
         return str.replaceFirst(str.substring(beginIndex, endIndex),
@@ -523,10 +523,10 @@ public class StringUtil {
 
 
     /**
-     * ½«¸ø¶¨×Ö·û´®µÄÊ××ÖÄ¸×ªÎªĞ¡Ğ´
+     * å°†ç»™å®šå­—ç¬¦ä¸²çš„é¦–å­—æ¯è½¬ä¸ºå°å†™
      *
-     * @param str ¸ø¶¨×Ö·û´®
-     * @return ĞÂµÄ×Ö·û´®
+     * @param str ç»™å®šå­—ç¬¦ä¸²
+     * @return æ–°çš„å­—ç¬¦ä¸²
      */
     public static String firstLetterToLowerCase(String str) {
         return toLowerCase(str, 0, 1);
@@ -534,10 +534,10 @@ public class StringUtil {
 
 
     /**
-     * ½«¸ø¶¨×Ö·û´®µÄÊ××ÖÄ¸×ªÎª´óĞ´
+     * å°†ç»™å®šå­—ç¬¦ä¸²çš„é¦–å­—æ¯è½¬ä¸ºå¤§å†™
      *
-     * @param str ¸ø¶¨×Ö·û´®
-     * @return ĞÂµÄ×Ö·û´®
+     * @param str ç»™å®šå­—ç¬¦ä¸²
+     * @return æ–°çš„å­—ç¬¦ä¸²
      */
     public static String firstLetterToUpperCase(String str) {
         return toUpperCase(str, 0, 1);
@@ -545,10 +545,10 @@ public class StringUtil {
 
 
     /**
-     * ½«¸ø¶¨µÄ×Ö·û´®MD5¼ÓÃÜ
+     * å°†ç»™å®šçš„å­—ç¬¦ä¸²MD5åŠ å¯†
      *
-     * @param string ¸ø¶¨µÄ×Ö·û´®
-     * @return MD5¼ÓÃÜºóÉú³ÉµÄ×Ö·û´®
+     * @param string ç»™å®šçš„å­—ç¬¦ä¸²
+     * @return MD5åŠ å¯†åç”Ÿæˆçš„å­—ç¬¦ä¸²
      */
     public static String MD5(String string) {
         String result = null;
@@ -579,10 +579,10 @@ public class StringUtil {
 
 
     /**
-     * ÅĞ¶Ï¸ø¶¨µÄ×Ö·û´®ÊÇ·ñÒÔÒ»¸öÌØ¶¨µÄ×Ö·û´®¿ªÍ·£¬ºöÂÔ´óĞ¡Ğ´
+     * åˆ¤æ–­ç»™å®šçš„å­—ç¬¦ä¸²æ˜¯å¦ä»¥ä¸€ä¸ªç‰¹å®šçš„å­—ç¬¦ä¸²å¼€å¤´ï¼Œå¿½ç•¥å¤§å°å†™
      *
-     * @param sourceString ¸ø¶¨µÄ×Ö·û´®
-     * @param newString    Ò»¸öÌØ¶¨µÄ×Ö·û´®
+     * @param sourceString ç»™å®šçš„å­—ç¬¦ä¸²
+     * @param newString    ä¸€ä¸ªç‰¹å®šçš„å­—ç¬¦ä¸²
      */
     public static boolean startsWithIgnoreCase(String sourceString, String newString) {
         int newLength = newString.length();
@@ -600,10 +600,10 @@ public class StringUtil {
 
 
     /**
-     * ÅĞ¶Ï¸ø¶¨µÄ×Ö·û´®ÊÇ·ñÒÔÒ»¸öÌØ¶¨µÄ×Ö·û´®½áÎ²£¬ºöÂÔ´óĞ¡Ğ´
+     * åˆ¤æ–­ç»™å®šçš„å­—ç¬¦ä¸²æ˜¯å¦ä»¥ä¸€ä¸ªç‰¹å®šçš„å­—ç¬¦ä¸²ç»“å°¾ï¼Œå¿½ç•¥å¤§å°å†™
      *
-     * @param sourceString ¸ø¶¨µÄ×Ö·û´®
-     * @param newString    Ò»¸öÌØ¶¨µÄ×Ö·û´®
+     * @param sourceString ç»™å®šçš„å­—ç¬¦ä¸²
+     * @param newString    ä¸€ä¸ªç‰¹å®šçš„å­—ç¬¦ä¸²
      */
     public static boolean endsWithIgnoreCase(String sourceString, String newString) {
         int newLength = newString.length();
@@ -622,7 +622,7 @@ public class StringUtil {
 
 
     /**
-     * ¼ì²é×Ö·û´®³¤¶È£¬Èç¹û×Ö·û´®µÄ³¤¶È³¬¹ımaxLength£¬¾Í½ØÈ¡Ç°maxLength¸ö×Ö·û´®²¢ÔÚÄ©Î²Æ´ÉÏappendString
+     * æ£€æŸ¥å­—ç¬¦ä¸²é•¿åº¦ï¼Œå¦‚æœå­—ç¬¦ä¸²çš„é•¿åº¦è¶…è¿‡maxLengthï¼Œå°±æˆªå–å‰maxLengthä¸ªå­—ç¬¦ä¸²å¹¶åœ¨æœ«å°¾æ‹¼ä¸ŠappendString
      */
     public static String checkLength(String string, int maxLength, String appendString) {
         if (string.length() > maxLength) {
@@ -636,9 +636,9 @@ public class StringUtil {
 
 
     /**
-     * ¼ì²é×Ö·û´®³¤¶È£¬Èç¹û×Ö·û´®µÄ³¤¶È³¬¹ımaxLength£¬¾Í½ØÈ¡Ç°maxLength¸ö×Ö·û´®²¢ÔÚÄ©Î²Æ´ÉÏ¡­
+     * æ£€æŸ¥å­—ç¬¦ä¸²é•¿åº¦ï¼Œå¦‚æœå­—ç¬¦ä¸²çš„é•¿åº¦è¶…è¿‡maxLengthï¼Œå°±æˆªå–å‰maxLengthä¸ªå­—ç¬¦ä¸²å¹¶åœ¨æœ«å°¾æ‹¼ä¸Šâ€¦
      */
     public static String checkLength(String string, int maxLength) {
-        return checkLength(string, maxLength, "¡­");
+        return checkLength(string, maxLength, "â€¦");
     }
 }

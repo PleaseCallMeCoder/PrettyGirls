@@ -8,7 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 /**
- * ÍøÂçÏà¹Ø¸¨ÖúÀà
+ * ç½‘ç»œç›¸å…³è¾…åŠ©ç±»
  */
 public class NetUtil {
 
@@ -18,7 +18,7 @@ public class NetUtil {
     }
 
     /**
-     * ÅĞ¶ÏÍøÂçÊÇ·ñÁ¬½Ó
+     * åˆ¤æ–­ç½‘ç»œæ˜¯å¦è¿æ¥
      *
      * @param context
      * @return
@@ -39,7 +39,7 @@ public class NetUtil {
     }
 
     /**
-     * ÅĞ¶ÏÊÇ·ñÊÇWIFIÁ¬½Ó
+     * åˆ¤æ–­æ˜¯å¦æ˜¯WIFIè¿æ¥
      *
      * @param context
      * @return
@@ -53,7 +53,7 @@ public class NetUtil {
     }
 
     /**
-     * ´ò¿ªÍøÂçÉèÖÃ½çÃæ
+     * æ‰“å¼€ç½‘ç»œè®¾ç½®ç•Œé¢
      */
     public static void openSetting(Activity activity) {
         Intent intent = new Intent("/");

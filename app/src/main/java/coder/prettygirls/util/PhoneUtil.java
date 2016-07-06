@@ -9,7 +9,7 @@ import android.provider.MediaStore;
 import java.io.File;
 
 /**
- * ÊÖ»ú×é¼şµ÷ÓÃ¹¤¾ßÀà
+ * æ‰‹æœºç»„ä»¶è°ƒç”¨å·¥å…·ç±»
  *
  * @author jingle1267@163.com
  */
@@ -25,11 +25,11 @@ public final class PhoneUtil {
 
 
     /**
-     * µ÷ÓÃÏµÍ³·¢¶ÌĞÅ½çÃæ
+     * è°ƒç”¨ç³»ç»Ÿå‘çŸ­ä¿¡ç•Œé¢
      *
      * @param activity    Activity
-     * @param phoneNumber ÊÖ»úºÅÂë
-     * @param smsContent  ¶ÌĞÅÄÚÈİ
+     * @param phoneNumber æ‰‹æœºå·ç 
+     * @param smsContent  çŸ­ä¿¡å†…å®¹
      */
     public static void sendMessage(Context activity, String phoneNumber, String smsContent) {
         if (phoneNumber == null || phoneNumber.length() < 4) {
@@ -44,7 +44,7 @@ public final class PhoneUtil {
 
 
     /**
-     * ÅĞ¶ÏÊÇ·ñÎªÁ¬»÷
+     * åˆ¤æ–­æ˜¯å¦ä¸ºè¿å‡»
      *
      * @return boolean
      */
@@ -59,52 +59,52 @@ public final class PhoneUtil {
     }
 
     /**
-     * »ñÈ¡ÊÖ»úĞÍºÅ
+     * è·å–æ‰‹æœºå‹å·
      *
-     * @param context ÉÏÏÂÎÄ
+     * @param context ä¸Šä¸‹æ–‡
      * @return String
      */
     public static String getMobileModel(Context context) {
         try {
-            String model = android.os.Build.MODEL; // ÊÖ»úĞÍºÅ
+            String model = android.os.Build.MODEL; // æ‰‹æœºå‹å·
             return model;
         } catch (Exception e) {
-            return "Î´Öª";
+            return "æœªçŸ¥";
         }
     }
 
     /**
-     * »ñÈ¡ÊÖ»úÆ·ÅÆ
+     * è·å–æ‰‹æœºå“ç‰Œ
      *
-     * @param context ÉÏÏÂÎÄ
+     * @param context ä¸Šä¸‹æ–‡
      * @return String
      */
     public static String getMobileBrand(Context context) {
         try {
-            String brand = android.os.Build.BRAND; // androidÏµÍ³°æ±¾ºÅ
+            String brand = android.os.Build.BRAND; // androidç³»ç»Ÿç‰ˆæœ¬å·
             return brand;
         } catch (Exception e) {
-            return "Î´Öª";
+            return "æœªçŸ¥";
         }
     }
 
 
     /**
-     * ÅÄÕÕ´ò¿ªÕÕÏà»ú£¡
+     * æ‹ç…§æ‰“å¼€ç…§ç›¸æœºï¼
      *
-     * @param requestcode ·µ»ØÖµ
-     * @param activity    ÉÏÏÂÎÄ
-     * @param fileName    Éú³ÉµÄÍ¼Æ¬ÎÄ¼şµÄÂ·¾¶
+     * @param requestcode è¿”å›å€¼
+     * @param activity    ä¸Šä¸‹æ–‡
+     * @param fileName    ç”Ÿæˆçš„å›¾ç‰‡æ–‡ä»¶çš„è·¯å¾„
      */
     public static void toTakePhoto(int requestcode, Activity activity, String fileName) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra("camerasensortype", 2);// µ÷ÓÃÇ°ÖÃÉãÏñÍ·
-        intent.putExtra("autofocus", true);// ×Ô¶¯¶Ô½¹
-        intent.putExtra("fullScreen", false);// È«ÆÁ
+        intent.putExtra("camerasensortype", 2);// è°ƒç”¨å‰ç½®æ‘„åƒå¤´
+        intent.putExtra("autofocus", true);// è‡ªåŠ¨å¯¹ç„¦
+        intent.putExtra("fullScreen", false);// å…¨å±
         intent.putExtra("showActionIcons", false);
-        try {//´´½¨Ò»¸öµ±Ç°ÈÎÎñidµÄÎÄ¼şÈ»ºóÀïÃæ´æ·ÅÈÎÎñµÄÕÕÆ¬µÄºÍÂ·¾¶£¡ÕâÖ÷ÎÄ¼şµÄÃû×ÖÊÇÓÃuuidµ½Ê±ºòÔÚÓÃÈÎÎñidÈ¥²éÂ·¾¶£¡
+        try {//åˆ›å»ºä¸€ä¸ªå½“å‰ä»»åŠ¡idçš„æ–‡ä»¶ç„¶åé‡Œé¢å­˜æ”¾ä»»åŠ¡çš„ç…§ç‰‡çš„å’Œè·¯å¾„ï¼è¿™ä¸»æ–‡ä»¶çš„åå­—æ˜¯ç”¨uuidåˆ°æ—¶å€™åœ¨ç”¨ä»»åŠ¡idå»æŸ¥è·¯å¾„ï¼
             File file = new File(fileName);
-            if (!file.exists()) {//Èç¹ûÕâ¸öÎÄ¼ş²»´æÔÚ¾Í´´½¨Ò»¸öÎÄ¼ş¼Ğ£¡
+            if (!file.exists()) {//å¦‚æœè¿™ä¸ªæ–‡ä»¶ä¸å­˜åœ¨å°±åˆ›å»ºä¸€ä¸ªæ–‡ä»¶å¤¹ï¼
                 file.mkdirs();
             }
             Uri uri = Uri.fromFile(new File(fileName));
@@ -117,10 +117,10 @@ public final class PhoneUtil {
 
 
     /**
-     * ´ò¿ªÏà²á
+     * æ‰“å¼€ç›¸å†Œ
      *
-     * @param requestcode ÏìÓ¦Âë
-     * @param activity    ÉÏÏÂÎÄ
+     * @param requestcode å“åº”ç 
+     * @param activity    ä¸Šä¸‹æ–‡
      */
     public static void toTakePicture(int requestcode, Activity activity) {
         Intent intent = new Intent(Intent.ACTION_PICK, null);
