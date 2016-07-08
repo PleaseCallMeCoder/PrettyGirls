@@ -24,13 +24,11 @@ public class SplashPresenter implements SplashContract.Presenter {
             @Override
             public void onGirlsLoaded(GirlsBean girlsBean) {
                 mView.showGirl(girlsBean.getResults().get(0).getUrl());
-                mView.animaImg();
             }
 
             @Override
             public void onDataNotAvailable() {
                 mView.showGirl();
-                mView.animaImg();
             }
 
         });

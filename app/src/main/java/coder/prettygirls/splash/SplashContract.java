@@ -12,8 +12,6 @@ public interface SplashContract {
         void showGirl(String girlUrl);
 
         void showGirl();
-
-        void animaImg();
     }
 
     interface Presenter extends BasePresenter {

@@ -82,7 +82,6 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
                 intent.putParcelableArrayListExtra("girls", data);
                 intent.putExtra("current", position);
                 startActivity(intent);
-                mActivity.overridePendingTransition(R.anim.slide_left_out, R.anim.slide_right_in);
             }
         });
 

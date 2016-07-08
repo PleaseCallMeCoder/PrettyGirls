@@ -28,6 +28,8 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
     @BindView(R.id.splash)
     ImageView mSplashImg;
 
+    private ScaleAnimation scaleAnimation;
+
     private Unbinder unbinder;
     private SplashPresenter mPresenter;
 
@@ -46,27 +48,12 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
         unbinder = ButterKnife.bind(this, view);
 
         mPresenter = new SplashPresenter(SplashFragment.this);
+
+        initAnim();
     }
 
-    @Override
-    public void showGirl(String girlUrl) {
-        Glide.with(getActivity())
-                .load(girlUrl)
-                .into(mSplashImg);
-    }
-
-    @Override
-    public void showGirl() {
-        Glide.with(getActivity())
-                .load(R.drawable.welcome)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(mSplashImg);
-    }
-
-    @Override
-    public void animaImg() {
-        //缩放动画
-        ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+    private void initAnim() {
+        scaleAnimation = new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setDuration(2500);
         mSplashImg.startAnimation(scaleAnimation);
@@ -89,6 +76,23 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
 
             }
         });
+    }
+
+    @Override
+    public void showGirl(String girlUrl) {
+        Glide.with(getActivity())
+                .load(girlUrl)
+                .animate(scaleAnimation)
+                .into(mSplashImg);
+    }
+
+    @Override
+    public void showGirl() {
+        Glide.with(getActivity())
+                .load(R.drawable.welcome)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .animate(scaleAnimation)
+                .into(mSplashImg);
     }
 
     @Override
