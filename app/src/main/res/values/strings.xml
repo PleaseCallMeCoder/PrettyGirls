@@ -91,4 +91,6 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="action_save">save</string>
+    <string name="action_share">share</string>
 </resources>

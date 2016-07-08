@@ -28,6 +28,13 @@ public class AboutActivity extends GestureActivity {
     CollapsingToolbarLayout mToolbarLayout;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
+        initView();
+    }
+
+    @Override
     protected int getContentViewId() {
         return R.layout.activity_about;
     }
@@ -42,15 +49,10 @@ public class AboutActivity extends GestureActivity {
         return null;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-        initView();
-    }
-
     private void initView() {
-        mAboutToolbar.setTitle("MeiZhi");
+        mAboutToolbar.setNavigationIcon(R.drawable.ic_back);
+        mAboutToolbar.setTitle("关于我");
+        setSupportActionBar(mAboutToolbar);
 
         Glide.with(this)
                 .load(R.drawable.about_backdrop)

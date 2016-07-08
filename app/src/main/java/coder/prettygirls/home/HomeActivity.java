@@ -1,6 +1,7 @@
 package coder.prettygirls.home;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -60,7 +61,11 @@ public class HomeActivity extends AppActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                Snackbar.make(v, "Send message", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                // 必须明确使用mailto前缀来修饰邮件地址,如果使用
+                // intent.putExtra(Intent.EXTRA_EMAIL, email)，结果将匹配不到任何应用
+                Uri uri = Uri.parse("mailto:3802**92@qq.com");
+                Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
+                startActivity(Intent.createChooser(intent, "请选择邮件类应用"));
                 break;
         }
     }
