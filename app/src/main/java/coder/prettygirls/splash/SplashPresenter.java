@@ -1,5 +1,6 @@
 package coder.prettygirls.splash;
 
+import coder.prettygirls.app.MyApplication;
 import coder.prettygirls.data.bean.GirlsBean;
 import coder.prettygirls.data.source.GirlsDataSource;
 import coder.prettygirls.data.source.GirlsResponsitory;
@@ -24,6 +25,7 @@ public class SplashPresenter implements SplashContract.Presenter {
             @Override
             public void onGirlsLoaded(GirlsBean girlsBean) {
                 mView.showGirl(girlsBean.getResults().get(0).getUrl());
+                MyApplication.currentGirl = girlsBean.getResults().get(0).getUrl();
             }
 
             @Override

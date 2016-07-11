@@ -3,7 +3,6 @@ package coder.prettygirls.about;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,6 +13,7 @@ import butterknife.ButterKnife;
 import coder.mylibrary.base.BaseFragment;
 import coder.mylibrary.base.GestureActivity;
 import coder.prettygirls.R;
+import coder.prettygirls.app.MyApplication;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
@@ -56,7 +56,7 @@ public class AboutActivity extends GestureActivity {
     }
 
     private void initView() {
-        mAboutToolbar.setTitle("About");
+        mAboutToolbar.setTitle("关于我");
         setSupportActionBar(mAboutToolbar);
         mAboutToolbar.setNavigationIcon(R.drawable.ic_back);
         mAboutToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -68,7 +68,7 @@ public class AboutActivity extends GestureActivity {
 
         //毛玻璃效果
         Glide.with(this)
-                .load(R.drawable.about_backdrop)
+                .load(MyApplication.currentGirl)
                 .bitmapTransform(new BlurTransformation(this, 15))
                 .into(mBackdrop);
     }
@@ -80,17 +80,6 @@ public class AboutActivity extends GestureActivity {
 
     @Override
     public void onClick(View v) {
-
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            finishActivity();
-            return false;
-        } else {
-            return super.onKeyDown(keyCode, event);
-        }
 
     }
 }
