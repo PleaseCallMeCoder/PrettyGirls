@@ -49,15 +49,32 @@ public class AboutActivity extends GestureActivity {
         return null;
     }
 
+    @Override
+    protected void doFinish() {
+        finishActivity();
+    }
+
     private void initView() {
-        mAboutToolbar.setNavigationIcon(R.drawable.ic_back);
         mAboutToolbar.setTitle("关于我");
         setSupportActionBar(mAboutToolbar);
+        mAboutToolbar.setNavigationIcon(R.drawable.ic_back);
+        mAboutToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishActivity();
+            }
+        });
 
+        //毛玻璃效果
         Glide.with(this)
                 .load(R.drawable.about_backdrop)
                 .bitmapTransform(new BlurTransformation(this, 15))
                 .into(mBackdrop);
+    }
+
+    private void finishActivity() {
+        finish();
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_right_out);
     }
 
     @Override

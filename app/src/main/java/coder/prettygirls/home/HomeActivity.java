@@ -3,21 +3,11 @@ package coder.prettygirls.home;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,7 +53,7 @@ public class HomeActivity extends AppActivity {
             case R.id.fab:
                 // 必须明确使用mailto前缀来修饰邮件地址,如果使用
                 // intent.putExtra(Intent.EXTRA_EMAIL, email)，结果将匹配不到任何应用
-                Uri uri = Uri.parse("mailto:3802**92@qq.com");
+                Uri uri = Uri.parse("mailto:18231195685@sina.cn");
                 Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
                 startActivity(Intent.createChooser(intent, "请选择邮件类应用"));
                 break;
@@ -80,7 +70,7 @@ public class HomeActivity extends AppActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
             Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
             startActivity(intent);
             return true;

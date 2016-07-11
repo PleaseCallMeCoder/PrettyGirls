@@ -25,6 +25,8 @@ public abstract class GestureActivity extends BaseActivity implements View.OnTou
 
     }
 
+    protected abstract void doFinish();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +75,7 @@ public abstract class GestureActivity extends BaseActivity implements View.OnTou
 
         } else if (e2.getX() - e1.getX() > verticalMinDistance && Math.abs(velocityX) > minVelocity) {
             //向右手势
-            finish();
+            doFinish();
         }
 
         return false;

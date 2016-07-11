@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.graphics.Palette;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -15,6 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
+import coder.prettygirls.app.Constants;
 import coder.prettygirls.data.bean.GirlsBean;
 import coder.prettygirls.util.BitmapUtil;
 import coder.prettygirls.widget.PinchImageView;
@@ -26,6 +31,8 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
 
     @BindView(R.id.view_pager)
     ViewPager mViewPager;
+    @BindView(R.id.rootView)
+    LinearLayout mRootView;
     private GirlAdapter mAdapter;
 
     private ArrayList<GirlsBean.ResultsEntity> datas;
@@ -34,6 +41,13 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
     private Unbinder unbinder;
 
     private OnGirlChange mListener;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
 
     public interface OnGirlChange {
         void change(int color);
@@ -92,6 +106,11 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
         getColor();
     }
 
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
     /**
      * 根据图片获得主题色
      */
@@ -111,9 +130,15 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
         });
     }
 
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
+    public void saveGirl() {
+        PinchImageView imageView = getCurrentImageView();
+        Bitmap bitmap = BitmapUtil.drawableToBitmap(imageView.getDrawable());
+        boolean isSuccess = BitmapUtil.saveBitmap(bitmap, Constants.dir, System.currentTimeMillis() + ".jpg", true);
+        if (isSuccess) {
+            Snackbar.make(mRootView, "大爷，下载好了呢~", Snackbar.LENGTH_LONG).show();
+        } else {
+            Snackbar.make(mRootView, "大爷，下载出错了哦~", Snackbar.LENGTH_LONG).show();
+        }
     }
 
     private PinchImageView getCurrentImageView() {

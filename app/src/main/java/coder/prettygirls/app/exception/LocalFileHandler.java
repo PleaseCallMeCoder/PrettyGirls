@@ -57,7 +57,13 @@ public class LocalFileHandler extends BaseExceptionHandler {
      */
     private void saveLog(Throwable ex) {
         try {
-            File errorFile = new File(FileUtil.getDiskCacheDir(context) + "/log/crash.log");
+
+            File path = new File(FileUtil.getDiskCacheDir(context) + "/log");
+            if (!path.exists()) {
+                path.mkdirs();
+            }
+
+            File errorFile = new File(path + "/crash.txt");
 
             if (!errorFile.exists()) {
                 errorFile.createNewFile();

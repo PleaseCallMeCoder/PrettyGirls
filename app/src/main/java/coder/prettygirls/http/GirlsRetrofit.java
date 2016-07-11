@@ -1,5 +1,6 @@
 package coder.prettygirls.http;
 
+import coder.prettygirls.app.Constants;
 import coder.prettygirls.app.MyApplication;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -10,8 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class GirlsRetrofit {
 
-    private static final String GANHUO_API = "http://gank.io/";
-
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofit() {
@@ -19,7 +18,7 @@ public class GirlsRetrofit {
             synchronized (GirlsRetrofit.class) {
                 if (retrofit == null) {
                     retrofit = new Retrofit.Builder()
-                            .baseUrl(GANHUO_API)
+                            .baseUrl(Constants.GANHUO_API)
                             .addConverterFactory(GsonConverterFactory.create())
                             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                             .client(MyApplication.defaultOkHttpClient())

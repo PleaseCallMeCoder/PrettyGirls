@@ -15,9 +15,13 @@ import okhttp3.OkHttpClient;
  */
 public class MyApplication extends Application {
 
+    private static MyApplication mApplication;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        mApplication = this;
 
         //配置是否显示log
         LogUtil.isDebug = true;
@@ -26,7 +30,7 @@ public class MyApplication extends Application {
         ToastUtil.isShow = true;
 
         //配置程序异常退出处理
-        new LocalFileHandler(this);
+        Thread.setDefaultUncaughtExceptionHandler(new LocalFileHandler(this));
     }
 
     public static OkHttpClient defaultOkHttpClient() {
@@ -36,5 +40,9 @@ public class MyApplication extends Application {
                 .readTimeout(3, TimeUnit.SECONDS)
                 .build();
         return client;
+    }
+
+    public static MyApplication getIntstance() {
+        return mApplication;
     }
 }

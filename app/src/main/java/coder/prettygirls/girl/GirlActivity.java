@@ -23,6 +23,8 @@ public class GirlActivity extends AppActivity implements GirlFragment.OnGirlChan
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
+    GirlFragment mGirlFragment;
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_girl;
@@ -35,7 +37,8 @@ public class GirlActivity extends AppActivity implements GirlFragment.OnGirlChan
 
     @Override
     protected BaseFragment getFirstFragment() {
-        return GirlFragment.newInstance(getIntent().getParcelableArrayListExtra("girls"), getIntent().getIntExtra("current", 0));
+        mGirlFragment = GirlFragment.newInstance(getIntent().getParcelableArrayListExtra("girls"), getIntent().getIntExtra("current", 0));
+        return mGirlFragment;
     }
 
     @Override
@@ -46,9 +49,15 @@ public class GirlActivity extends AppActivity implements GirlFragment.OnGirlChan
     }
 
     private void initView() {
-        mToolbar.setNavigationIcon(R.drawable.ic_back);
         mToolbar.setTitle("MEIZHI");
         setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.ic_back);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -65,7 +74,7 @@ public class GirlActivity extends AppActivity implements GirlFragment.OnGirlChan
 
             return true;
         } else if (id == R.id.action_save) {
-
+            mGirlFragment.saveGirl();
             return true;
         }
 
