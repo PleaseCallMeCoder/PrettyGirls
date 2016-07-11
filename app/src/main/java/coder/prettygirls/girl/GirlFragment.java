@@ -1,7 +1,9 @@
 package coder.prettygirls.girl;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -131,13 +134,31 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
     }
 
     public void saveGirl() {
+        String imgUrl = datas.get(mViewPager.getCurrentItem()).getUrl();
         PinchImageView imageView = getCurrentImageView();
         Bitmap bitmap = BitmapUtil.drawableToBitmap(imageView.getDrawable());
-        boolean isSuccess = BitmapUtil.saveBitmap(bitmap, Constants.dir, System.currentTimeMillis() + ".jpg", true);
+        boolean isSuccess = BitmapUtil.saveBitmap(bitmap, Constants.dir, imgUrl.substring(imgUrl.lastIndexOf("/") + 1, imgUrl.length()), true);
         if (isSuccess) {
             Snackbar.make(mRootView, "大爷，下载好了呢~", Snackbar.LENGTH_LONG).show();
         } else {
             Snackbar.make(mRootView, "大爷，下载出错了哦~", Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    public void shareGirl() {
+        PinchImageView imageView = getCurrentImageView();
+        Bitmap bitmap = BitmapUtil.drawableToBitmap(imageView.getDrawable());
+        boolean isSuccess = BitmapUtil.saveBitmap(bitmap, Constants.dir, "share.jpg", false);
+        if (isSuccess) {
+            //由文件得到uri
+            Uri imageUri = Uri.fromFile(new File(Constants.dir + "/share.jpg"));
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+            shareIntent.setType("image/*");
+            startActivity(Intent.createChooser(shareIntent, "分享MeiZhi到"));
+        } else {
+            Snackbar.make(mRootView, "大爷，分享出错了哦~", Snackbar.LENGTH_LONG).show();
         }
     }
 
