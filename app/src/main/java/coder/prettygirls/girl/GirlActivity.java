@@ -3,6 +3,7 @@ package coder.prettygirls.girl;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,7 +56,7 @@ public class GirlActivity extends AppActivity implements GirlFragment.OnGirlChan
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                finishActivity();
             }
         });
     }
@@ -94,5 +95,21 @@ public class GirlActivity extends AppActivity implements GirlFragment.OnGirlChan
             window.setStatusBarColor(ColorUtil.colorBurn(color));
             window.setNavigationBarColor(ColorUtil.colorBurn(color));
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            finishActivity();
+            return false;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
+
+    }
+
+    private void finishActivity() {
+        finish();
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_right_out);
     }
 }

@@ -17,6 +17,8 @@ public interface GirlsContract {
         void load(List<GirlsBean.ResultsEntity> datas);
 
         void showError();
+
+        void showNormal();
     }
 
     interface Presenter extends BasePresenter {

@@ -2,11 +2,13 @@ package coder.prettygirls.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewStub;
+import android.widget.Button;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -32,6 +34,10 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
 
     @BindView(R.id.girls_recycler_view)
     EasyRecyclerView mGirlsRecyclerView;
+    @BindView(R.id.network_error_layout)
+    ViewStub mNetworkErrorLayout;
+
+    private View networkErrorView;
 
     private ArrayList<GirlsBean.ResultsEntity> data;
     private GirlsAdapter mAdapter;
@@ -120,6 +126,19 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
     @Override
     public void showError() {
         mGirlsRecyclerView.showError();
+
+        if (networkErrorView != null) {
+            networkErrorView.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        networkErrorView = mNetworkErrorLayout.inflate();
+    }
+
+    public void showNormal() {
+        if (networkErrorView != null) {
+            networkErrorView.setVisibility(View.GONE);
+        }
     }
 
     @Override

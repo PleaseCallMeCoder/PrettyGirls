@@ -37,6 +37,7 @@ public class GirlsPresenter implements GirlsContract.Presenter {
                 } else {
                     mView.load(girlsBean.getResults());
                 }
+                mView.showNormal();
             }
 
             @Override

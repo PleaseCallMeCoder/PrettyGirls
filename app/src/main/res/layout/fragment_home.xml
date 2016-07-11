@@ -8,10 +8,17 @@
     android:background="@color/swipe_background_color"
     android:orientation="horizontal">
 
+    <ViewStub
+        android:id="@+id/network_error_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/network_error"/>
+
     <com.jude.easyrecyclerview.EasyRecyclerView
         android:id="@+id/girls_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_progress="@layout/progress_layout"
         app:scrollbarStyle="insideOverlay">
     </com.jude.easyrecyclerview.EasyRecyclerView>
 
