@@ -50,7 +50,7 @@ public class GirlActivity extends AppActivity implements GirlFragment.OnGirlChan
     }
 
     private void initView() {
-        mToolbar.setTitle("MEIZHI");
+        mToolbar.setTitle(R.string.meizhi);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_back);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
