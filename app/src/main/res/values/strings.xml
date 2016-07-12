@@ -94,4 +94,5 @@
     <string name="action_save">save</string>
     <string name="action_share">share</string>
     <string name="meizhi">MeiZhi</string>
+    <string name="version_str">PrettyGirls\npleasecallmecoder</string>
 </resources>

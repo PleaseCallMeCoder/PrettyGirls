@@ -6,4 +6,5 @@
     <color name="swipe_background_color">#ffffff</color>
     <color name="white">#ffffff</color>
     <color name="gray">#eeeeee</color>
+    <color name="black">#000000</color>
 </resources>
