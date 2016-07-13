@@ -27,6 +27,10 @@ import coder.prettygirls.app.Constants;
 import coder.prettygirls.data.bean.GirlsBean;
 import coder.prettygirls.util.BitmapUtil;
 import coder.prettygirls.widget.PinchImageView;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by oracleen on 2016/7/4.
@@ -138,12 +142,27 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
         String imgUrl = datas.get(mViewPager.getCurrentItem()).getUrl();
         PinchImageView imageView = getCurrentImageView();
         Bitmap bitmap = BitmapUtil.drawableToBitmap(imageView.getDrawable());
-        boolean isSuccess = BitmapUtil.saveBitmap(bitmap, Constants.dir, imgUrl.substring(imgUrl.lastIndexOf("/") + 1, imgUrl.length()), true);
-        if (isSuccess) {
-            Snackbar.make(mRootView, "大爷，下载好了呢~", Snackbar.LENGTH_LONG).show();
-        } else {
-            Snackbar.make(mRootView, "大爷，下载出错了哦~", Snackbar.LENGTH_LONG).show();
-        }
+
+        Observable.just(BitmapUtil.saveBitmap(bitmap, Constants.dir, imgUrl.substring(imgUrl.lastIndexOf("/") + 1, imgUrl.length()), true))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean isSuccess) {
+                        if (isSuccess) {
+                            Snackbar.make(mRootView, "大爷，下载好了呢~", Snackbar.LENGTH_LONG).show();
+                        } else {
+                            Snackbar.make(mRootView, "大爷，下载出错了哦~", Snackbar.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+//        boolean isSuccess = BitmapUtil.saveBitmap(bitmap, Constants.dir, imgUrl.substring(imgUrl.lastIndexOf("/") + 1, imgUrl.length()), true);
+//        if (isSuccess) {
+//            Snackbar.make(mRootView, "大爷，下载好了呢~", Snackbar.LENGTH_LONG).show();
+//        } else {
+//            Snackbar.make(mRootView, "大爷，下载出错了哦~", Snackbar.LENGTH_LONG).show();
+//        }
     }
 
     public void shareGirl() {
@@ -151,18 +170,39 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
         Drawable drawable = imageView.getDrawable();
         if (drawable != null) {
             Bitmap bitmap = BitmapUtil.drawableToBitmap(drawable);
-            boolean isSuccess = BitmapUtil.saveBitmap(bitmap, Constants.dir, "share.jpg", false);
-            if (isSuccess) {
-                //由文件得到uri
-                Uri imageUri = Uri.fromFile(new File(Constants.dir + "/share.jpg"));
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
-                shareIntent.setType("image/*");
-                startActivity(Intent.createChooser(shareIntent, "分享MeiZhi到"));
-            } else {
-                Snackbar.make(mRootView, "大爷，分享出错了哦~", Snackbar.LENGTH_LONG).show();
-            }
+
+            Observable.just(BitmapUtil.saveBitmap(bitmap, Constants.dir, "share.jpg", false))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<Boolean>() {
+                        @Override
+                        public void call(Boolean isSuccess) {
+                            if (isSuccess) {
+                                //由文件得到uri
+                                Uri imageUri = Uri.fromFile(new File(Constants.dir + "/share.jpg"));
+                                Intent shareIntent = new Intent();
+                                shareIntent.setAction(Intent.ACTION_SEND);
+                                shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+                                shareIntent.setType("image/*");
+                                startActivity(Intent.createChooser(shareIntent, "分享MeiZhi到"));
+                            } else {
+                                Snackbar.make(mRootView, "大爷，分享出错了哦~", Snackbar.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
+//            boolean isSuccess = BitmapUtil.saveBitmap(bitmap, Constants.dir, "share.jpg", false);
+//            if (isSuccess) {
+//                //由文件得到uri
+//                Uri imageUri = Uri.fromFile(new File(Constants.dir + "/share.jpg"));
+//                Intent shareIntent = new Intent();
+//                shareIntent.setAction(Intent.ACTION_SEND);
+//                shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+//                shareIntent.setType("image/*");
+//                startActivity(Intent.createChooser(shareIntent, "分享MeiZhi到"));
+//            } else {
+//                Snackbar.make(mRootView, "大爷，分享出错了哦~", Snackbar.LENGTH_LONG).show();
+//            }
         }
     }
 
