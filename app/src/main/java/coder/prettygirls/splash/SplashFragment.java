@@ -2,9 +2,7 @@ package coder.prettygirls.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
@@ -31,11 +29,10 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
     private ScaleAnimation scaleAnimation;
 
     private Unbinder unbinder;
-    private SplashPresenter mPresenter;
+    private SplashContract.Presenter mPresenter;
 
-    public static SplashFragment getInstance() {
-        SplashFragment splashFragment = new SplashFragment();
-        return splashFragment;
+    public static SplashFragment newInstance() {
+        return new SplashFragment();
     }
 
     @Override
@@ -47,7 +44,7 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
     protected void initView(View view, Bundle savedInstanceState) {
         unbinder = ButterKnife.bind(this, view);
 
-        mPresenter = new SplashPresenter(SplashFragment.this);
+//        mPresenter = new SplashPresenter(SplashFragment.this);
 
         initAnim();
     }
@@ -105,5 +102,10 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void setPresenter(SplashContract.Presenter presenter) {
+        this.mPresenter = presenter;
     }
 }

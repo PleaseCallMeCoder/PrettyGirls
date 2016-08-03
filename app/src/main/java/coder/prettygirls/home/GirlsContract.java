@@ -11,7 +11,7 @@ import coder.prettygirls.data.bean.GirlsBean;
  */
 public interface GirlsContract {
 
-    interface View extends BaseView {
+    interface View extends BaseView<Presenter> {
         void refresh(List<GirlsBean.ResultsEntity> datas);
 
         void load(List<GirlsBean.ResultsEntity> datas);

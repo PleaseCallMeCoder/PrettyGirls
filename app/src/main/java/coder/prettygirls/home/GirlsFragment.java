@@ -41,7 +41,7 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
     private ArrayList<GirlsBean.ResultsEntity> data;
     private GirlsAdapter mAdapter;
 
-    private GirlsPresenter mPresenter;
+    private GirlsContract.Presenter mPresenter;
     private int page = 1;
     private int size = 20;
 
@@ -52,7 +52,7 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
         return R.layout.fragment_home;
     }
 
-    public static GirlsFragment getInstance() {
+    public static GirlsFragment newInstance() {
         GirlsFragment mainFragment = new GirlsFragment();
         return mainFragment;
     }
@@ -60,8 +60,6 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         unbinder = ButterKnife.bind(this, view);
-
-        mPresenter = new GirlsPresenter(this);
 
         initRecyclerView();
 
@@ -155,5 +153,10 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void setPresenter(GirlsContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 }

@@ -10,7 +10,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,6 +18,7 @@ import coder.mylibrary.base.AppActivity;
 import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
 import coder.prettygirls.about.AboutActivity;
+import coder.prettygirls.data.source.GirlsRepository;
 
 public class HomeActivity extends AppActivity {
 
@@ -28,6 +28,8 @@ public class HomeActivity extends AppActivity {
     FloatingActionButton mFab;
 
     private long exitTime = 0;
+
+    private GirlsPresenter mPresenter;
 
     @Override
     protected int getContentViewId() {
@@ -85,7 +87,13 @@ public class HomeActivity extends AppActivity {
 
     @Override
     protected BaseFragment getFirstFragment() {
-        return GirlsFragment.getInstance();
+        GirlsFragment girlsFragment = GirlsFragment.newInstance();
+        initPresenter(new GirlsRepository(), girlsFragment);
+        return girlsFragment;
+    }
+
+    private void initPresenter(GirlsRepository repository, GirlsContract.View view) {
+        mPresenter = new GirlsPresenter(repository, view);
     }
 
     @Override
