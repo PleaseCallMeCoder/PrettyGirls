@@ -2,15 +2,14 @@ package coder.prettygirls.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewStub;
-import android.widget.Button;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 
 import java.util.ArrayList;
@@ -81,13 +80,24 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
         mAdapter.setMore(R.layout.load_more_layout, this);
         mAdapter.setNoMore(R.layout.no_more_layout);
         mAdapter.setError(R.layout.error_layout);
-        mAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+//        mAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//                Intent intent = new Intent(mActivity, GirlActivity.class);
+//                intent.putParcelableArrayListExtra("girls", data);
+//                intent.putExtra("current", position);
+//                startActivity(intent);
+//            }
+//        });
+
+        mAdapter.setOnMyItemClickListener(new GirlsAdapter.OnMyItemClickListener() {
             @Override
-            public void onItemClick(int position) {
+            public void onItemClick(int position, BaseViewHolder holder) {
                 Intent intent = new Intent(mActivity, GirlActivity.class);
                 intent.putParcelableArrayListExtra("girls", data);
                 intent.putExtra("current", position);
-                startActivity(intent);
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(holder.itemView, holder.itemView.getWidth() / 2, holder.itemView.getHeight() / 2, 0, 0);
+                startActivity(intent, options.toBundle());
             }
         });
 
