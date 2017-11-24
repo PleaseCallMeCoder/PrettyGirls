@@ -56,7 +56,7 @@ compile 'com.android.support:design:23.0.1'————谷歌Material Design控�
 
 # 联系方式
 
-邮箱：18231195685@sina.cn
+邮箱：<shenjuex@gmail.com>
 
 # 我的博客
 
