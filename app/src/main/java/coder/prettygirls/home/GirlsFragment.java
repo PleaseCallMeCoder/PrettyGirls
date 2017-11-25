@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewStub;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
-import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
     private ArrayList<GirlsBean.ResultsEntity> data;
     private GirlsAdapter mAdapter;
 
-    private GirlsPresenter mPresenter;
+    private GirlsContract.Presenter mPresenter;
     private int page = 1;
     private int size = 20;
 
@@ -52,7 +51,7 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
         return R.layout.fragment_home;
     }
 
-    public static GirlsFragment getInstance() {
+    public static GirlsFragment newInstance() {
         GirlsFragment mainFragment = new GirlsFragment();
         return mainFragment;
     }
@@ -60,8 +59,6 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         unbinder = ButterKnife.bind(this, view);
-
-        mPresenter = new GirlsPresenter(this);
 
         initRecyclerView();
 
@@ -90,15 +87,12 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
 //            }
 //        });
 
-        mAdapter.setOnMyItemClickListener(new GirlsAdapter.OnMyItemClickListener() {
-            @Override
-            public void onItemClick(int position, BaseViewHolder holder) {
-                Intent intent = new Intent(mActivity, GirlActivity.class);
-                intent.putParcelableArrayListExtra("girls", data);
-                intent.putExtra("current", position);
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(holder.itemView, holder.itemView.getWidth() / 2, holder.itemView.getHeight() / 2, 0, 0);
-                startActivity(intent, options.toBundle());
-            }
+        mAdapter.setOnMyItemClickListener((position, holder) -> {
+            Intent intent = new Intent(mActivity, GirlActivity.class);
+            intent.putParcelableArrayListExtra("girls", data);
+            intent.putExtra("current", position);
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(holder.itemView, holder.itemView.getWidth() / 2, holder.itemView.getHeight() / 2, 0, 0);
+            startActivity(intent, options.toBundle());
         });
 
         mGirlsRecyclerView.setRefreshListener(this);
@@ -155,5 +149,10 @@ public class GirlsFragment extends BaseFragment implements GirlsContract.View, S
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void setPresenter(GirlsContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 }

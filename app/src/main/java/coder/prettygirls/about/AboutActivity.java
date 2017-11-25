@@ -59,12 +59,7 @@ public class AboutActivity extends GestureActivity {
         mAboutToolbar.setTitle("关于我");
         setSupportActionBar(mAboutToolbar);
         mAboutToolbar.setNavigationIcon(R.drawable.ic_back);
-        mAboutToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finishActivity();
-            }
-        });
+        mAboutToolbar.setNavigationOnClickListener(v -> finishActivity());
 
         //毛玻璃效果
         Glide.with(this)

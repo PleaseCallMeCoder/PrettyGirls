@@ -29,7 +29,6 @@ import coder.prettygirls.util.BitmapUtil;
 import coder.prettygirls.widget.PinchImageView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -126,15 +125,12 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
         PinchImageView imageView = getCurrentImageView();
         Bitmap bitmap = BitmapUtil.drawableToBitmap(imageView.getDrawable());
         Palette.Builder builder = Palette.from(bitmap);
-        builder.generate(new Palette.PaletteAsyncListener() {
-            @Override
-            public void onGenerated(Palette palette) {
+        builder.generate(palette -> {
 //                Palette.Swatch vir = palette.getLightMutedSwatch();
-                Palette.Swatch vir = palette.getVibrantSwatch();
-                if (vir == null)
-                    return;
-                mListener.change(vir.getRgb());
-            }
+            Palette.Swatch vir = palette.getVibrantSwatch();
+            if (vir == null)
+                return;
+            mListener.change(vir.getRgb());
         });
     }
 
@@ -146,14 +142,11 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
         Observable.just(BitmapUtil.saveBitmap(bitmap, Constants.dir, imgUrl.substring(imgUrl.lastIndexOf("/") + 1, imgUrl.length()), true))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Boolean>() {
-                    @Override
-                    public void call(Boolean isSuccess) {
-                        if (isSuccess) {
-                            Snackbar.make(mRootView, "大爷，下载好了呢~", Snackbar.LENGTH_LONG).show();
-                        } else {
-                            Snackbar.make(mRootView, "大爷，下载出错了哦~", Snackbar.LENGTH_LONG).show();
-                        }
+                .subscribe(isSuccess -> {
+                    if (isSuccess) {
+                        Snackbar.make(mRootView, "大爷，下载好了呢~", Snackbar.LENGTH_LONG).show();
+                    } else {
+                        Snackbar.make(mRootView, "大爷，下载出错了哦~", Snackbar.LENGTH_LONG).show();
                     }
                 });
 
@@ -174,20 +167,17 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
             Observable.just(BitmapUtil.saveBitmap(bitmap, Constants.dir, "share.jpg", false))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Action1<Boolean>() {
-                        @Override
-                        public void call(Boolean isSuccess) {
-                            if (isSuccess) {
-                                //由文件得到uri
-                                Uri imageUri = Uri.fromFile(new File(Constants.dir + "/share.jpg"));
-                                Intent shareIntent = new Intent();
-                                shareIntent.setAction(Intent.ACTION_SEND);
-                                shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
-                                shareIntent.setType("image/*");
-                                startActivity(Intent.createChooser(shareIntent, "分享MeiZhi到"));
-                            } else {
-                                Snackbar.make(mRootView, "大爷，分享出错了哦~", Snackbar.LENGTH_LONG).show();
-                            }
+                    .subscribe(isSuccess -> {
+                        if (isSuccess) {
+                            //由文件得到uri
+                            Uri imageUri = Uri.fromFile(new File(Constants.dir + "/share.jpg"));
+                            Intent shareIntent = new Intent();
+                            shareIntent.setAction(Intent.ACTION_SEND);
+                            shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+                            shareIntent.setType("image/*");
+                            startActivity(Intent.createChooser(shareIntent, "分享MeiZhi到"));
+                        } else {
+                            Snackbar.make(mRootView, "大爷，分享出错了哦~", Snackbar.LENGTH_LONG).show();
                         }
                     });
 

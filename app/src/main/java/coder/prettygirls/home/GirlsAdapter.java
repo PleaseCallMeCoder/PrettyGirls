@@ -1,7 +1,6 @@
 package coder.prettygirls.home;
 
 import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -28,12 +27,9 @@ public class GirlsAdapter extends RecyclerArrayAdapter<GirlsBean.ResultsEntity> 
     @Override
     public void OnBindViewHolder(final BaseViewHolder holder, final int position) {
         super.OnBindViewHolder(holder, position);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick(position, holder);
-                }
+        holder.itemView.setOnClickListener(v -> {
+            if (mOnItemClickListener != null) {
+                mOnItemClickListener.onItemClick(position, holder);
             }
         });
     }

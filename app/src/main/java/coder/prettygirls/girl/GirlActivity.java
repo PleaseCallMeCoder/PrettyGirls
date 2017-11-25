@@ -53,12 +53,7 @@ public class GirlActivity extends AppActivity implements GirlFragment.OnGirlChan
         mToolbar.setTitle(R.string.meizhi);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_back);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finishActivity();
-            }
-        });
+        mToolbar.setNavigationOnClickListener(v -> finishActivity());
     }
 
     @Override

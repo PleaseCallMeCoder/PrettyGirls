@@ -6,12 +6,12 @@ import coder.prettygirls.data.source.remote.RemoteGirlsDataSource;
 /**
  * Created by oracleen on 2016/6/29.
  */
-public class GirlsResponsitory implements GirlsDataSource {
+public class GirlsRepository implements GirlsDataSource {
 
     private LocalGirlsDataSource mLocalGirlsDataSource;
     private RemoteGirlsDataSource mRemoteGirlsDataSource;
 
-    public GirlsResponsitory() {
+    public GirlsRepository() {
         mLocalGirlsDataSource = new LocalGirlsDataSource();
         mRemoteGirlsDataSource = new RemoteGirlsDataSource();
     }

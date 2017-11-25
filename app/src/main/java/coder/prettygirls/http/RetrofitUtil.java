@@ -9,15 +9,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by gaohailong on 2016/5/17.
  */
-public class GirlsRetrofit {
+public class RetrofitUtil {
 
-    private static Retrofit retrofit;
+    private static volatile Retrofit instance;
 
-    public static Retrofit getRetrofit() {
-        if (retrofit == null) {
-            synchronized (GirlsRetrofit.class) {
-                if (retrofit == null) {
-                    retrofit = new Retrofit.Builder()
+    private RetrofitUtil() {
+    }
+
+    public static Retrofit getInstance() {
+        if (instance == null) {
+            synchronized (RetrofitUtil.class) {
+                if (instance == null) {
+                    instance = new Retrofit.Builder()
                             .baseUrl(Constants.GANHUO_API)
                             .addConverterFactory(GsonConverterFactory.create())
                             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -26,6 +29,6 @@ public class GirlsRetrofit {
                 }
             }
         }
-        return retrofit;
+        return instance;
     }
 }
