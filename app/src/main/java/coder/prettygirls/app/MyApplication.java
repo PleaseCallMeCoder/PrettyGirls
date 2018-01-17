@@ -24,6 +24,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        InitializeService.start(this);
+
         mApplication = this;
 
         //配置是否显示log
