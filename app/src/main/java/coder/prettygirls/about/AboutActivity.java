@@ -1,12 +1,12 @@
 package coder.prettygirls.about;
 
+import com.bumptech.glide.Glide;
+
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,14 +17,16 @@ import coder.prettygirls.app.MyApplication;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
- * Created by oracleen on 2016/7/4.
+ * Created by coder on 2016/7/4.
  */
 public class AboutActivity extends GestureActivity {
 
     @BindView(R.id.backdrop)
     ImageView mBackdrop;
+
     @BindView(R.id.about_toolbar)
     Toolbar mAboutToolbar;
+
     @BindView(R.id.toolbar_layout)
     CollapsingToolbarLayout mToolbarLayout;
 

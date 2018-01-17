@@ -3,7 +3,7 @@ package coder.prettygirls.data.source;
 import coder.prettygirls.data.bean.GirlsBean;
 
 /**
- * Created by oracleen on 2016/6/29.
+ * Created by coder on 2016/6/29.
  */
 public interface GirlsDataSource {
 

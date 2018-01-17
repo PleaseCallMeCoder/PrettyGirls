@@ -3,7 +3,7 @@ package coder.prettygirls.data.source.local;
 import coder.prettygirls.data.source.GirlsDataSource;
 
 /**
- * Created by oracleen on 2016/6/29.
+ * Created by coder on 2016/6/29.
  */
 public class LocalGirlsDataSource implements GirlsDataSource {
 

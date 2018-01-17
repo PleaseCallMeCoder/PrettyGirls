@@ -17,7 +17,7 @@ import coder.prettygirls.R;
 import coder.prettygirls.util.ColorUtil;
 
 /**
- * Created by oracleen on 2016/7/4.
+ * Created by coder on 2016/7/4.
  */
 public class GirlActivity extends AppActivity implements GirlFragment.OnGirlChange {
 
@@ -38,7 +38,8 @@ public class GirlActivity extends AppActivity implements GirlFragment.OnGirlChan
 
     @Override
     protected BaseFragment getFirstFragment() {
-        mGirlFragment = GirlFragment.newInstance(getIntent().getParcelableArrayListExtra("girls"), getIntent().getIntExtra("current", 0));
+        mGirlFragment = GirlFragment.newInstance(getIntent().getParcelableArrayListExtra("girls"),
+                getIntent().getIntExtra("current", 0));
         return mGirlFragment;
     }
 

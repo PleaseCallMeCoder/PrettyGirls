@@ -4,7 +4,7 @@ import coder.prettygirls.data.source.local.LocalGirlsDataSource;
 import coder.prettygirls.data.source.remote.RemoteGirlsDataSource;
 
 /**
- * Created by oracleen on 2016/6/29.
+ * Created by coder on 2016/6/29.
  */
 public class GirlsResponsitory implements GirlsDataSource {
 

@@ -4,7 +4,7 @@ import coder.prettygirls.BasePresenter;
 import coder.prettygirls.BaseView;
 
 /**
- * Created by oracleen on 2016/6/28.
+ * Created by coder on 2016/6/28.
  */
 public interface SplashContract {
 

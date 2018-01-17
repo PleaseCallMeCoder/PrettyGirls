@@ -11,12 +11,14 @@ import okhttp3.OkHttpClient;
 
 
 /**
- * Created by oracleen on 2016/6/28.
+ * Created by coder on 2016/6/28.
  */
 public class MyApplication extends Application {
 
     private static MyApplication mApplication;
-    public static String currentGirl = "http://ww2.sinaimg.cn/large/610dc034jw1f5k1k4azguj20u00u0421.jpg";
+
+    public static String currentGirl
+            = "http://ww2.sinaimg.cn/large/610dc034jw1f5k1k4azguj20u00u0421.jpg";
 
     @Override
     public void onCreate() {

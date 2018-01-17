@@ -6,7 +6,7 @@ import coder.prettygirls.data.source.GirlsDataSource;
 import coder.prettygirls.data.source.GirlsResponsitory;
 
 /**
- * Created by oracleen on 2016/6/28.
+ * Created by coder on 2016/6/28.
  */
 public class SplashPresenter implements SplashContract.Presenter {
 

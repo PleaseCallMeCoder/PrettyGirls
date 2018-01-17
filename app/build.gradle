@@ -1,15 +1,20 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+def config = rootProject.ext.android
+
+def librarys = rootProject.ext.supportDependencies
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
 
     defaultConfig {
         applicationId "coder.prettygirls"
-        minSdkVersion 14
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
     }
     buildTypes {
         release {
@@ -17,32 +22,35 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
-apply plugin: 'com.neenbedankt.android-apt'
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:palette-v7:23.4.0'
-    compile 'com.android.support:cardview-v7:23.+'
 
-    compile 'com.jakewharton:butterknife:8.1.0'
-    apt 'com.jakewharton:butterknife-compiler:8.1.0'
+    compile librarys.supportAppcompat
+    compile librarys.suppoutDesign
+    compile librarys.cardView
+    compile librarys.palette
 
-    compile 'com.jude:easyrecyclerview:4.0.2'
+    compile librarys.butterKnife
+    annotationProcessor librarys.butterKnifeComp
 
-    /*compile 'com.github.bumptech.glide:glide:3.7.0'*/
-    compile 'jp.wasabeef:glide-transformations:2.0.1'
+    compile librarys.easyRecyclerView
 
-    compile 'com.squareup.okhttp3:okhttp:3.3.1'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    compile librarys.glideTrans
 
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.6'
+    compile librarys.okhttp
+    compile librarys.retrofit
+    compile librarys.retrofitConverter
+    compile librarys.retrofitAdapter
+
+    compile librarys.rxAndroid
+    compile librarys.rxJava
 
     compile project(':mylibrary')
 }

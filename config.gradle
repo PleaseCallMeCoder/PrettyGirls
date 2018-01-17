@@ -1,0 +1,34 @@
+ext {
+    android = [
+            compileSdkVersion: 27,
+            buildToolsVersion: "27.0.2",
+            minSdkVersion    : 15,
+            targetSdkVersion : 27,
+            versionCode      : 1,
+            versionName      : '1.0'
+    ]
+
+    //Version
+    supportLibrary = "27.0.2"
+    butterKnife = "8.8.1"
+    retrofit = "2.0.2"
+
+    //supportLibraries dependencies
+    supportDependencies = [
+            supportAppcompat : "com.android.support:appcompat-v7:${supportLibrary}",
+            supportV4        : "com.android.support:support-v4:${supportLibrary}",
+            suppoutDesign    : "com.android.support:design:${supportLibrary}",
+            cardView         : "com.android.support:cardview-v7:${supportLibrary}",
+            palette          : "com.android.support:palette-v7:${supportLibrary}",
+            butterKnife      : "com.jakewharton:butterknife:${butterKnife}",
+            butterKnifeComp  : "com.jakewharton:butterknife-compiler:${butterKnife}",
+            easyRecyclerView : "com.jude:easyrecyclerview:4.0.2",
+            glideTrans       : "jp.wasabeef:glide-transformations:2.0.1",
+            retrofit         : "com.squareup.retrofit2:retrofit:${retrofit}",
+            retrofitConverter: "com.squareup.retrofit2:converter-gson:${retrofit}",
+            retrofitAdapter  : "com.squareup.retrofit2:adapter-rxjava:${retrofit}",
+            okhttp           : "com.squareup.okhttp3:okhttp:3.3.1",
+            rxAndroid        : "io.reactivex:rxandroid:1.2.1",
+            rxJava           : "io.reactivex:rxjava:1.1.6",
+    ]
+}

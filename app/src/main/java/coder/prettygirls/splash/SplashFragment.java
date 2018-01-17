@@ -1,16 +1,14 @@
 package coder.prettygirls.splash;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,9 +17,10 @@ import coder.mylibrary.base.ActivityManager;
 import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
 import coder.prettygirls.home.HomeActivity;
+import coder.prettygirls.util.SimpleAnimationListener;
 
 /**
- * Created by oracleen on 2016/6/28.
+ * Created by coder on 2016/6/28.
  */
 public class SplashFragment extends BaseFragment implements SplashContract.View {
 
@@ -31,6 +30,7 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
     private ScaleAnimation scaleAnimation;
 
     private Unbinder unbinder;
+
     private SplashPresenter mPresenter;
 
     public static SplashFragment getInstance() {
@@ -53,27 +53,18 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
     }
 
     private void initAnim() {
-        scaleAnimation = new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        scaleAnimation = new ScaleAnimation(1.0f, 1.1f, 1.0f, 1.1f, Animation.RELATIVE_TO_SELF,
+                0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setDuration(2500);
         mSplashImg.startAnimation(scaleAnimation);
 
         //缩放动画监听
-        scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
+        scaleAnimation.setAnimationListener(new SimpleAnimationListener() {
             @Override
             public void onAnimationEnd(Animation animation) {
                 startActivity(new Intent(getActivity(), HomeActivity.class));
                 ActivityManager.getInstance().finishActivity();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
             }
         });
     }

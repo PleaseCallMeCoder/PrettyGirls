@@ -1,12 +1,12 @@
 package coder.prettygirls.girl;
 
+import com.bumptech.glide.Glide;
+
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -15,13 +15,16 @@ import coder.prettygirls.data.bean.GirlsBean;
 import coder.prettygirls.widget.PinchImageView;
 
 /**
- * Created by oracleen on 2016/7/4.
+ * Created by coder on 2016/7/4.
  */
 public class GirlAdapter extends PagerAdapter {
 
     private Context mContext;
+
     private ArrayList<GirlsBean.ResultsEntity> mDatas;
+
     private LayoutInflater layoutInflater;
+
     private View mCurrentView;
 
     public GirlAdapter(Context context, ArrayList<GirlsBean.ResultsEntity> datas) {
@@ -49,7 +52,7 @@ public class GirlAdapter extends PagerAdapter {
     public View instantiateItem(ViewGroup container, int position) {
         final String imageUrl = mDatas.get(position).getUrl();
         View view = layoutInflater.inflate(R.layout.item_girl_detail, container, false);
-        PinchImageView imageView = (PinchImageView) view.findViewById(R.id.img);
+        PinchImageView imageView = view.findViewById(R.id.img);
         Glide.with(mContext)
                 .load(imageUrl)
                 .thumbnail(0.2f)

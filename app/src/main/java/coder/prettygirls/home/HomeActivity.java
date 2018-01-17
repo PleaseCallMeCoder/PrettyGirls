@@ -10,7 +10,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +23,7 @@ public class HomeActivity extends AppActivity {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+
     @BindView(R.id.fab)
     FloatingActionButton mFab;
 
@@ -56,8 +56,8 @@ public class HomeActivity extends AppActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                // 必须明确使用mailto前缀来修饰邮件地址,如果使用
-                Uri uri = Uri.parse("mailto:18231195685@sina.cn");
+                // 必须明确使用mailto前缀来修饰邮件地址
+                Uri uri = Uri.parse("mailto:shenjuex@gmail.com");
                 Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
                 startActivity(Intent.createChooser(intent, "请选择邮件类应用"));
                 break;

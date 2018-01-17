@@ -3,7 +3,7 @@ package coder.prettygirls.app;
 import coder.prettygirls.util.FileUtil;
 
 /**
- * Created by oracleen on 2016/7/11.
+ * Created by coder on 2016/7/11.
  * 保存项目中用到的常量
  */
 public class Constants {

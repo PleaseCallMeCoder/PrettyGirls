@@ -14,6 +14,11 @@ public class SplashActivity extends AppActivity {
     }
 
     @Override
+    protected void setTheme() {
+        setTheme(R.style.AppTheme_Splash);
+    }
+
+    @Override
     protected int getContentViewId() {
         return R.layout.activity_splash;
     }

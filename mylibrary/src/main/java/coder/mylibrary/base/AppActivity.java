@@ -17,16 +17,22 @@ public abstract class AppActivity extends BaseActivity {
 
     }
 
+    protected void setTheme() {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme();
         super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
 
-        if (null != getIntent()) {
+        if (getIntent() == null) {
             handleIntent(getIntent());
         }
         //避免重复添加Fragment
-        if (null == getSupportFragmentManager().getFragments()) {
+        if (getSupportFragmentManager().getFragments() == null
+                || getSupportFragmentManager().getFragments().size() == 0) {
             BaseFragment firstFragment = getFirstFragment();
             if (null != firstFragment) {
                 addFragment(firstFragment);
