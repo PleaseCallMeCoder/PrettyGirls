@@ -6,17 +6,17 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.widget.ImageView;
 
 /**
  * 手势图片控件
  *
  * @author clifford
  */
-public class PinchImageView extends ImageView {
+public class PinchImageView extends AppCompatImageView {
 
     //图片缩放动画时间
     public static final int SCALE_ANIMATOR_DURATION = 200;
@@ -148,7 +148,8 @@ public class PinchImageView extends ImageView {
                     }
                     //设置fit center状态的scale和位置
                     result.postScale(scale, scale, imageWidth / 2f, imageHeight / 2f);
-                    result.postTranslate((displayWidth - imageWidth) / 2f, (displayHeight - imageHeight) / 2f);
+                    result.postTranslate((displayWidth - imageWidth) / 2f,
+                            (displayHeight - imageHeight) / 2f);
                 }
             }
         }
@@ -168,7 +169,8 @@ public class PinchImageView extends ImageView {
             return null;
         } else {
             Matrix matrix = getCurrentImageMatrix();
-            RectF bound = new RectF(0, 0, getDrawable().getIntrinsicWidth(), getDrawable().getIntrinsicHeight());
+            RectF bound = new RectF(0, 0, getDrawable().getIntrinsicWidth(),
+                    getDrawable().getIntrinsicHeight());
             matrix.mapRect(bound);
             return bound;
         }
@@ -251,30 +253,32 @@ public class PinchImageView extends ImageView {
 
 
     //点击，双击，长按，滑动等手势处理
-    private GestureDetector mGestureDetector = new GestureDetector(PinchImageView.this.getContext(), new GestureDetector.SimpleOnGestureListener() {
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            fling(velocityX, velocityY);
-            return true;
-        }
+    private GestureDetector mGestureDetector = new GestureDetector(PinchImageView.this.getContext(),
+            new GestureDetector.SimpleOnGestureListener() {
+                public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                        float velocityY) {
+                    fling(velocityX, velocityY);
+                    return true;
+                }
 
-        public void onLongPress(MotionEvent e) {
-            if (mOnLongClickListener != null) {
-                mOnLongClickListener.onLongClick(PinchImageView.this);
-            }
-        }
+                public void onLongPress(MotionEvent e) {
+                    if (mOnLongClickListener != null) {
+                        mOnLongClickListener.onLongClick(PinchImageView.this);
+                    }
+                }
 
-        public boolean onDoubleTap(MotionEvent e) {
-            doubleTap(e.getX(), e.getY());
-            return true;
-        }
+                public boolean onDoubleTap(MotionEvent e) {
+                    doubleTap(e.getX(), e.getY());
+                    return true;
+                }
 
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            if (mOnClickListener != null) {
-                mOnClickListener.onClick(PinchImageView.this);
-            }
-            return true;
-        }
-    });
+                public boolean onSingleTapConfirmed(MotionEvent e) {
+                    if (mOnClickListener != null) {
+                        mOnClickListener.onClick(PinchImageView.this);
+                    }
+                    return true;
+                }
+            });
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -297,10 +301,12 @@ public class PinchImageView extends ImageView {
                 if (event.getPointerCount() > 2) {
                     //如果还没结束缩放模式，但是第一个点抬起了，那么让第二个点和第三个点作为缩放控制点
                     if (event.getAction() >> 8 == 0) {
-                        saveScaleContext(event.getX(1), event.getY(1), event.getX(2), event.getY(2));
+                        saveScaleContext(event.getX(1), event.getY(1), event.getX(2),
+                                event.getY(2));
                         //如果还没结束缩放模式，但是第二个点抬起了，那么让第一个点和第三个点作为缩放控制点
                     } else if (event.getAction() >> 8 == 1) {
-                        saveScaleContext(event.getX(0), event.getY(0), event.getX(2), event.getY(2));
+                        saveScaleContext(event.getX(0), event.getY(0), event.getX(2),
+                                event.getY(2));
                     }
                 }
             }
@@ -341,9 +347,13 @@ public class PinchImageView extends ImageView {
                     //在缩放模式下移动
                 } else if (mPinchMode == PINCH_MODE_SCALE && event.getPointerCount() > 1) {
                     //两个缩放点间的距离
-                    float distance = MathUtils.getDistance(event.getX(0), event.getY(0), event.getX(1), event.getY(1));
+                    float distance = MathUtils
+                            .getDistance(event.getX(0), event.getY(0), event.getX(1),
+                                    event.getY(1));
                     //保存缩放点中点
-                    float[] lineCenter = MathUtils.getCenterPoint(event.getX(0), event.getY(0), event.getX(1), event.getY(1));
+                    float[] lineCenter = MathUtils
+                            .getCenterPoint(event.getX(0), event.getY(0), event.getX(1),
+                                    event.getY(1));
                     mLastMovePoint.set(lineCenter[0], lineCenter[1]);
                     //处理缩放
                     scale(mScaleCenter, mScaleBase, distance, mLastMovePoint);
@@ -416,9 +426,11 @@ public class PinchImageView extends ImageView {
 
     //记录缩放前的一些信息
     private void saveScaleContext(float x1, float y1, float x2, float y2) {
-        mScaleBase = MathUtils.getMatrixScale(mOuterMatrix)[0] / MathUtils.getDistance(x1, y1, x2, y2);
+        mScaleBase = MathUtils.getMatrixScale(mOuterMatrix)[0] / MathUtils
+                .getDistance(x1, y1, x2, y2);
         //获取缩放缩放点中点在第一层变换后的图片上的坐标
-        float[] center = MathUtils.inverseMatrixPoint(MathUtils.getCenterPoint(x1, y1, x2, y2), mOuterMatrix);
+        float[] center = MathUtils
+                .inverseMatrixPoint(MathUtils.getCenterPoint(x1, y1, x2, y2), mOuterMatrix);
         mScaleCenter.set(center[0], center[1]);
     }
 
@@ -486,7 +498,8 @@ public class PinchImageView extends ImageView {
         //得到放大之后的图片方框
         Matrix testMatrix = new Matrix(innerMatrix);
         testMatrix.postConcat(animEnd);
-        RectF testBound = new RectF(0, 0, getDrawable().getIntrinsicWidth(), getDrawable().getIntrinsicHeight());
+        RectF testBound = new RectF(0, 0, getDrawable().getIntrinsicWidth(),
+                getDrawable().getIntrinsicHeight());
         testMatrix.mapRect(testBound);
         //修正位置
         float postX = 0;
@@ -555,7 +568,8 @@ public class PinchImageView extends ImageView {
         //尝试根据缩放点进行缩放修正
         Matrix testMatrix = new Matrix(currentMatrix);
         testMatrix.postScale(scalePost, scalePost, mLastMovePoint.x, mLastMovePoint.y);
-        RectF testBound = new RectF(0, 0, getDrawable().getIntrinsicWidth(), getDrawable().getIntrinsicHeight());
+        RectF testBound = new RectF(0, 0, getDrawable().getIntrinsicWidth(),
+                getDrawable().getIntrinsicHeight());
         //获取缩放修正后的图片方框
         testMatrix.mapRect(testBound);
         //检测缩放修正后位置有无超出，如果超出进行位置修正
@@ -609,7 +623,8 @@ public class PinchImageView extends ImageView {
     }
 
     //惯性动画
-    private class FlingAnimator extends ValueAnimator implements ValueAnimator.AnimatorUpdateListener {
+    private class FlingAnimator extends ValueAnimator
+            implements ValueAnimator.AnimatorUpdateListener {
 
         private float[] mVector;
 
@@ -633,9 +648,11 @@ public class PinchImageView extends ImageView {
     }
 
     //缩放动画
-    private class ScaleAnimator extends ValueAnimator implements ValueAnimator.AnimatorUpdateListener {
+    private class ScaleAnimator extends ValueAnimator
+            implements ValueAnimator.AnimatorUpdateListener {
 
         private float[] mStart = new float[9];
+
         private float[] mEnd = new float[9];
 
         public ScaleAnimator(Matrix start, Matrix end) {

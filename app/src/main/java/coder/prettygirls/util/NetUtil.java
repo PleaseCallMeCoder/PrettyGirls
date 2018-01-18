@@ -10,7 +10,7 @@ import android.net.NetworkInfo;
 /**
  * 网络相关辅助类
  */
-public class NetUtil {
+public final class NetUtil {
 
     private NetUtil() {
         /* cannot be instantiated */
@@ -19,9 +19,6 @@ public class NetUtil {
 
     /**
      * 判断网络是否连接
-     *
-     * @param context
-     * @return
      */
     public static boolean isConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context
@@ -40,16 +37,16 @@ public class NetUtil {
 
     /**
      * 判断是否是WIFI连接
-     *
-     * @param context
-     * @return
      */
     public static boolean isWIFI(Context context) {
 
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager == null)
+        ConnectivityManager connectivityManager = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager == null) {
             return false;
-        return connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+        }
+        return connectivityManager.getActiveNetworkInfo().getType()
+                == ConnectivityManager.TYPE_WIFI;
     }
 
     /**

@@ -7,11 +7,14 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by gaohailong on 2016/5/17.
+ * Created by coder on 2016/5/17.
  */
 public class GirlsRetrofit {
 
-    private static Retrofit retrofit;
+    private volatile static Retrofit retrofit;
+
+    private GirlsRetrofit() {
+    }
 
     public static Retrofit getRetrofit() {
         if (retrofit == null) {

@@ -13,8 +13,8 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import coder.prettygirls.R;
 
@@ -22,35 +22,46 @@ import coder.prettygirls.R;
 /**
  * 圆图片View
  */
-public class CircleImageView extends ImageView {
+public class CircleImageView extends AppCompatImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
+
     private static final int COLORDRAWABLE_DIMENSION = 1;
 
     private static final int DEFAULT_BORDER_WIDTH = 0;
+
     private static final int DEFAULT_BORDER_COLOR = Color.BLACK;
 
     private final RectF mDrawableRect = new RectF();
+
     private final RectF mBorderRect = new RectF();
 
     private final Matrix mShaderMatrix = new Matrix();
+
     private final Paint mBitmapPaint = new Paint();
+
     private final Paint mBorderPaint = new Paint();
 
     private int mBorderColor = DEFAULT_BORDER_COLOR;
+
     private int mBorderWidth = DEFAULT_BORDER_WIDTH;
 
     private Bitmap mBitmap;
+
     private BitmapShader mBitmapShader;
+
     private int mBitmapWidth;
+
     private int mBitmapHeight;
 
     private float mDrawableRadius;
+
     private float mBorderRadius;
 
     private boolean mReady;
+
     private boolean mSetupPending;
 
     public CircleImageView(Context context) {
@@ -65,9 +76,11 @@ public class CircleImageView extends ImageView {
         super(context, attrs, defStyle);
         super.setScaleType(SCALE_TYPE);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0);
+        TypedArray a = context
+                .obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0);
 
-        mBorderWidth = a.getDimensionPixelSize(R.styleable.CircleImageView_border_width, DEFAULT_BORDER_WIDTH);
+        mBorderWidth = a.getDimensionPixelSize(R.styleable.CircleImageView_border_width,
+                DEFAULT_BORDER_WIDTH);
         mBorderColor = a.getColor(R.styleable.CircleImageView_border_color, DEFAULT_BORDER_COLOR);
 
         a.recycle();
@@ -88,7 +101,8 @@ public class CircleImageView extends ImageView {
     @Override
     public void setScaleType(ScaleType scaleType) {
         if (scaleType != SCALE_TYPE) {
-            throw new IllegalArgumentException(String.format("ScaleType %s not supported.", scaleType));
+            throw new IllegalArgumentException(
+                    String.format("ScaleType %s not supported.", scaleType));
         }
     }
 
@@ -169,9 +183,12 @@ public class CircleImageView extends ImageView {
             Bitmap bitmap;
 
             if (drawable instanceof ColorDrawable) {
-                bitmap = Bitmap.createBitmap(COLORDRAWABLE_DIMENSION, COLORDRAWABLE_DIMENSION, BITMAP_CONFIG);
+                bitmap = Bitmap.createBitmap(COLORDRAWABLE_DIMENSION, COLORDRAWABLE_DIMENSION,
+                        BITMAP_CONFIG);
             } else {
-                bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), BITMAP_CONFIG);
+                bitmap = Bitmap
+                        .createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(),
+                                BITMAP_CONFIG);
             }
 
             Canvas canvas = new Canvas(bitmap);
@@ -207,9 +224,11 @@ public class CircleImageView extends ImageView {
         mBitmapWidth = mBitmap.getWidth();
 
         mBorderRect.set(0, 0, getWidth(), getHeight());
-        mBorderRadius = Math.min((mBorderRect.height() - mBorderWidth) / 2, (mBorderRect.width() - mBorderWidth) / 2);
+        mBorderRadius = Math.min((mBorderRect.height() - mBorderWidth) / 2,
+                (mBorderRect.width() - mBorderWidth) / 2);
 
-        mDrawableRect.set(mBorderWidth, mBorderWidth, mBorderRect.width() - mBorderWidth, mBorderRect.height() - mBorderWidth);
+        mDrawableRect.set(mBorderWidth, mBorderWidth, mBorderRect.width() - mBorderWidth,
+                mBorderRect.height() - mBorderWidth);
         mDrawableRadius = Math.min(mDrawableRect.height() / 2, mDrawableRect.width() / 2);
 
         updateShaderMatrix();
@@ -232,7 +251,8 @@ public class CircleImageView extends ImageView {
         }
 
         mShaderMatrix.setScale(scale, scale);
-        mShaderMatrix.postTranslate((int) (dx + 0.5f) + mBorderWidth, (int) (dy + 0.5f) + mBorderWidth);
+        mShaderMatrix
+                .postTranslate((int) (dx + 0.5f) + mBorderWidth, (int) (dy + 0.5f) + mBorderWidth);
 
         mBitmapShader.setLocalMatrix(mShaderMatrix);
     }

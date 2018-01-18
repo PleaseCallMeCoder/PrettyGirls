@@ -20,14 +20,15 @@ import coder.prettygirls.app.MyApplication;
  */
 public class BitmapUtil {
 
-    public static android.graphics.Bitmap drawableToBitmap(Drawable drawable) {
-        android.graphics.Bitmap bitmap = android.graphics.Bitmap.createBitmap(
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        Bitmap bitmap = Bitmap.createBitmap(
 
                 drawable.getIntrinsicWidth(),
 
                 drawable.getIntrinsicHeight(),
 
-                drawable.getOpacity() != PixelFormat.OPAQUE ? android.graphics.Bitmap.Config.ARGB_8888
+                drawable.getOpacity() != PixelFormat.OPAQUE
+                        ? android.graphics.Bitmap.Config.ARGB_8888
 
                         : android.graphics.Bitmap.Config.RGB_565);
 
@@ -82,13 +83,15 @@ public class BitmapUtil {
         // 其次把文件插入到系统图库
         if (isShowPhotos) {
             try {
-                MediaStore.Images.Media.insertImage(MyApplication.getIntstance().getContentResolver(),
-                        file.getAbsolutePath(), name, null);
+                MediaStore.Images.Media
+                        .insertImage(MyApplication.getIntstance().getContentResolver(),
+                                file.getAbsolutePath(), name, null);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
             // 最后通知图库更新
-            MyApplication.getIntstance().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file)));
+            MyApplication.getIntstance().sendBroadcast(
+                    new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file)));
         }
 
         return true;

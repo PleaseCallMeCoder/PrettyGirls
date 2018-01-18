@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.nio.charset.Charset;
 import java.util.Date;
 
 import coder.prettygirls.util.FileUtil;
@@ -27,14 +28,12 @@ public class LocalFileHandler extends BaseExceptionHandler {
 
     /**
      * 自定义错误处理,手机错误信息,发送错误报告操作均在此完成,开发者可以根据自己的情况来自定义异常处理逻辑
-     *
-     * @param ex
-     * @return
      */
     @Override
     public boolean handleException(Throwable ex) {
-        if (ex == null)
+        if (ex == null) {
             return false;
+        }
 
         new Thread() {
             public void run() {
@@ -52,8 +51,6 @@ public class LocalFileHandler extends BaseExceptionHandler {
 
     /**
      * 保存错误日志到本地
-     *
-     * @param ex
      */
     private void saveLog(Throwable ex) {
         try {
@@ -70,8 +67,9 @@ public class LocalFileHandler extends BaseExceptionHandler {
             }
 
             OutputStream out = new FileOutputStream(errorFile, true);
-            out.write(("\n\n-----错误分割线" + dateFormat.format(new Date()) + "-----\n\n").getBytes());
-            PrintStream stream = new PrintStream(out);
+            out.write(("\n\n-----错误分割线" + dateFormat.format(new Date()) + "-----\n\n").getBytes(
+                    Charset.forName("UTF-8")));
+            PrintStream stream = new PrintStream(out, false, "UTF-8");
             ex.printStackTrace(stream);
             stream.flush();
             out.flush();

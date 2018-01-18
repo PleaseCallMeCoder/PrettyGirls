@@ -9,74 +9,79 @@ import java.util.Date;
  * 日期操作工具类.
  */
 
-public class DateUtil {
+public final class DateUtil {
+
+    private DateUtil() {
+
+    }
 
     /**
      * 英文简写如：2016
      */
-    public static String FORMAT_Y = "yyyy";
+    public static final String FORMAT_Y = "yyyy";
 
     /**
      * 英文简写如：12:01
      */
-    public static String FORMAT_HM = "HH:mm";
+    public static final String FORMAT_HM = "HH:mm";
 
     /**
      * 英文简写如：1-12 12:01
      */
-    public static String FORMAT_MDHM = "MM-dd HH:mm";
+    public static final String FORMAT_MDHM = "MM-dd HH:mm";
 
     /**
      * 英文简写（默认）如：2016-12-01
      */
-    public static String FORMAT_YMD = "yyyy-MM-dd";
+    public static final String FORMAT_YMD = "yyyy-MM-dd";
 
     /**
      * 英文全称  如：2016-12-01 23:15
      */
-    public static String FORMAT_YMDHM = "yyyy-MM-dd HH:mm";
+    public static final String FORMAT_YMDHM = "yyyy-MM-dd HH:mm";
 
     /**
      * 英文全称  如：2016-12-01 23:15:06
      */
-    public static String FORMAT_YMDHMS = "yyyy-MM-dd HH:mm:ss";
+    public static final String FORMAT_YMDHMS = "yyyy-MM-dd HH:mm:ss";
 
     /**
      * 精确到毫秒的完整时间    如：yyyy-MM-dd HH:mm:ss.S
      */
-    public static String FORMAT_FULL = "yyyy-MM-dd HH:mm:ss.S";
+    public static final String FORMAT_FULL = "yyyy-MM-dd HH:mm:ss.S";
 
     /**
      * 精确到毫秒的完整时间    如：yyyy-MM-dd HH:mm:ss.S
      */
-    public static String FORMAT_FULL_SN = "yyyyMMddHHmmssS";
+    public static final String FORMAT_FULL_SN = "yyyyMMddHHmmssS";
 
     /**
      * 中文简写  如：2016年12月01日
      */
-    public static String FORMAT_YMD_CN = "yyyy年MM月dd日";
+    public static final String FORMAT_YMD_CN = "yyyy年MM月dd日";
 
     /**
      * 中文简写  如：2016年12月01日  12时
      */
-    public static String FORMAT_YMDH_CN = "yyyy年MM月dd日 HH时";
+    public static final String FORMAT_YMDH_CN = "yyyy年MM月dd日 HH时";
 
     /**
      * 中文简写  如：2016年12月01日  12时12分
      */
-    public static String FORMAT_YMDHM_CN = "yyyy年MM月dd日 HH时mm分";
+    public static final String FORMAT_YMDHM_CN = "yyyy年MM月dd日 HH时mm分";
 
     /**
      * 中文全称  如：2016年12月01日  23时15分06秒
      */
-    public static String FORMAT_YMDHMS_CN = "yyyy年MM月dd日  HH时mm分ss秒";
+    public static final String FORMAT_YMDHMS_CN = "yyyy年MM月dd日  HH时mm分ss秒";
 
     /**
      * 精确到毫秒的完整中文时间
      */
-    public static String FORMAT_FULL_CN = "yyyy年MM月dd日  HH时mm分ss秒SSS毫秒";
+    public static final String FORMAT_FULL_CN = "yyyy年MM月dd日  HH时mm分ss秒SSS毫秒";
 
     public static Calendar calendar = null;
+
     private static final String FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 

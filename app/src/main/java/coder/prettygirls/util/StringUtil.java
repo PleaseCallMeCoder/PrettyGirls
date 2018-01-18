@@ -2,6 +2,7 @@ package coder.prettygirls.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -11,7 +12,7 @@ import java.util.regex.Pattern;
 /**
  * 字符串工具类，提供一些字符串相关的便捷方法
  */
-public class StringUtil {
+public final class StringUtil {
 
     private StringUtil() {
         throw new AssertionError();
@@ -37,9 +38,16 @@ public class StringUtil {
      */
     public static boolean isBlank(String str) {
 
-        return (str == null || str.trim().length() == 0);
+        if (str == null || str.length() == 0) {
+            return true;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
-
 
     /**
      * is null or its length is 0
@@ -113,9 +121,9 @@ public class StringUtil {
         return (!Character.isLetter(c) || Character.isUpperCase(c))
                 ? str
                 : new StringBuilder(str.length()).append(
-                Character.toUpperCase(c))
-                .append(str.substring(1))
-                .toString();
+                        Character.toUpperCase(c))
+                        .append(str.substring(1))
+                        .toString();
     }
 
 
@@ -127,7 +135,7 @@ public class StringUtil {
      */
     public static String utf8Encode(String str) {
 
-        if (!isEmpty(str) && str.getBytes().length != str.length()) {
+        if (!isEmpty(str) && str.getBytes(Charset.forName("UTF-8")).length != str.length()) {
             try {
                 return URLEncoder.encode(str, "UTF-8");
             } catch (UnsupportedEncodingException e) {
@@ -169,9 +177,9 @@ public class StringUtil {
         return StringUtil.isEmpty(source)
                 ? source
                 : source.replaceAll("&lt;", "<")
-                .replaceAll("&gt;", ">")
-                .replaceAll("&amp;", "&")
-                .replaceAll("&quot;", "\"");
+                        .replaceAll("&gt;", ">")
+                        .replaceAll("&amp;", "&")
+                        .replaceAll("&quot;", "\"");
     }
 
 
@@ -565,7 +573,7 @@ public class StringUtil {
             for (int i = 0; i < md5Bytes.length; i++) {
                 int val = ((int) md5Bytes[i]) & 0xff;
                 if (val < 16) {
-                    hexValue.append("0");
+                    hexValue.append('0');
                 }
                 hexValue.append(Integer.toHexString(val));
             }

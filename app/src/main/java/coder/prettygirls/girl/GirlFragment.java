@@ -145,7 +145,7 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
         Bitmap bitmap = BitmapUtil.drawableToBitmap(imageView.getDrawable());
 
         Observable.just(BitmapUtil.saveBitmap(bitmap, Constants.dir,
-                imgUrl.substring(imgUrl.lastIndexOf("/") + 1, imgUrl.length()), true))
+                imgUrl.substring(imgUrl.lastIndexOf('/') + 1, imgUrl.length()), true))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(isSuccess -> {

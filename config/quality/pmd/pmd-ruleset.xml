@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Custom ruleset"
+        xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+        xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd"
+        xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>
+        This ruleset checks my code for bad stuff
+    </description>
+
+    <!--https://pmd.github.io/pmd-5.6.1/pmd-java/index.html-->
+
+    <exclude-pattern>.*/R.java</exclude-pattern>
+    <exclude-pattern>.*/gen/.*</exclude-pattern>
+    <exclude-pattern>.*Dagger*.*</exclude-pattern>
+
+    <rule ref="rulesets/java/android.xml" />
+    <rule ref="rulesets/java/clone.xml" />
+    <rule ref="rulesets/java/finalizers.xml" />
+    <rule ref="rulesets/java/imports.xml">
+        <!-- Espresso is designed this way !-->
+        <exclude name="TooManyStaticImports" />
+    </rule>
+    <rule ref="rulesets/java/logging-java.xml">
+        <exclude name="AvoidPrintStackTrace" />
+    </rule>
+    <rule ref="rulesets/java/braces.xml" />
+    <rule ref="rulesets/java/strings.xml">
+        <exclude name="InsufficientStringBufferDeclaration" />
+        <exclude name="AvoidDuplicateLiterals" />
+    </rule>
+    <rule ref="rulesets/java/basic.xml">
+        <exclude name="CollapsibleIfStatements" />
+    </rule>
+    <rule ref="rulesets/java/naming.xml">
+        <exclude name="AbstractNaming" />
+        <exclude name="ShortClassName" />
+        <exclude name="LongVariable" />
+        <exclude name="ShortMethodName" />
+        <exclude name="ShortVariable" />
+        <exclude name="VariableNamingConventions" />
+        <exclude name="MethodNamingConventions" />
+        <exclude name="MisleadingVariableName" />
+        <exclude name="AvoidFieldNameMatchingMethodName" />
+    </rule>
+</ruleset>

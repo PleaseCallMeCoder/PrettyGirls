@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
+apply from: '../config/quality.gradle'
 
 def config = rootProject.ext.android
 

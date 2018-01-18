@@ -1,3 +1,6 @@
+//retrolambda
+apply plugin: 'me.tatarka.retrolambda'
+
 ext {
     android = [
             compileSdkVersion: 27,
