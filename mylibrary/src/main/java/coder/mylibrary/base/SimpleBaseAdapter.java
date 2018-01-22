@@ -33,7 +33,8 @@ public abstract class SimpleBaseAdapter<T> extends BaseAdapter {
      * @param datas
      */
     public void refereshDatas(List<T> datas) {
-        this.datas = datas;
+        this.datas.clear();
+        this.datas.addAll(datas);
         this.notifyDataSetChanged();
     }
 
