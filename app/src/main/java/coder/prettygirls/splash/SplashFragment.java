@@ -2,6 +2,9 @@ package coder.prettygirls.splash;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +36,8 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
 
     private SplashPresenter mPresenter;
 
+    private GlideDrawableImageViewTarget mImageViewTarget;
+
     public static SplashFragment getInstance() {
         SplashFragment splashFragment = new SplashFragment();
         return splashFragment;
@@ -50,6 +55,15 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
         mPresenter = new SplashPresenter(SplashFragment.this);
 
         initAnim();
+
+        mImageViewTarget = new GlideDrawableImageViewTarget(mSplashImg) {
+            @Override
+            public void onResourceReady(GlideDrawable resource,
+                    GlideAnimation<? super GlideDrawable> animation) {
+                super.onResourceReady(resource, animation);
+                mSplashImg.startAnimation(scaleAnimation);
+            }
+        };
     }
 
     private void initAnim() {
@@ -57,7 +71,6 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
                 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setDuration(2500);
-        mSplashImg.startAnimation(scaleAnimation);
 
         //缩放动画监听
         scaleAnimation.setAnimationListener(new SimpleAnimationListener() {
@@ -73,8 +86,7 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
     public void showGirl(String girlUrl) {
         Glide.with(getActivity())
                 .load(girlUrl)
-                .animate(scaleAnimation)
-                .into(mSplashImg);
+                .into(mImageViewTarget);
     }
 
     @Override
@@ -82,8 +94,7 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
         Glide.with(getActivity())
                 .load(R.drawable.welcome)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .animate(scaleAnimation)
-                .into(mSplashImg);
+                .into(mImageViewTarget);
     }
 
     @Override
