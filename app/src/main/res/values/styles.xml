@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!--全局activity切换动画-->
         <!--<item name="android:windowAnimationStyle">@style/ActivityAnimation</item>-->
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
