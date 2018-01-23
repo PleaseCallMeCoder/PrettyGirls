@@ -17,8 +17,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
+import coder.prettygirls.app.PgBaseFragment;
 import coder.prettygirls.data.bean.GirlsBean;
 import coder.prettygirls.girl.GirlActivity;
 import coder.prettygirls.util.LogUtil;
@@ -26,7 +26,7 @@ import coder.prettygirls.util.LogUtil;
 /**
  * Created by coder on 2016/6/21.
  */
-public class GirlsFragment extends BaseFragment
+public class GirlsFragment extends PgBaseFragment
         implements GirlsContract.View, SwipeRefreshLayout.OnRefreshListener,
         RecyclerArrayAdapter.OnLoadMoreListener {
 

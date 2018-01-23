@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
 import coder.prettygirls.app.Constants;
+import coder.prettygirls.app.PgBaseFragment;
 import coder.prettygirls.app.RxUtils;
 import coder.prettygirls.data.bean.GirlsBean;
 import coder.prettygirls.util.BitmapUtil;
@@ -35,7 +35,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by coder on 2016/7/4.
  */
-public class GirlFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
+public class GirlFragment extends PgBaseFragment implements ViewPager.OnPageChangeListener {
 
     @BindView(R.id.view_pager)
     ViewPager mViewPager;
@@ -145,7 +145,7 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
         PinchImageView imageView = getCurrentImageView();
         Bitmap bitmap = BitmapUtil.drawableToBitmap(imageView.getDrawable());
 
-        Observable.just(BitmapUtil.saveBitmap(bitmap, Constants.dir,
+        addSubscribe(Observable.just(BitmapUtil.saveBitmap(bitmap, Constants.dir,
                 imgUrl.substring(imgUrl.lastIndexOf('/') + 1, imgUrl.length()), true))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -155,7 +155,7 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
                     } else {
                         Snackbar.make(mRootView, "大爷，下载出错了哦~", Snackbar.LENGTH_LONG).show();
                     }
-                }, RxUtils.IgnoreErrorProcessor);
+                }, RxUtils.IgnoreErrorProcessor));
     }
 
     public void shareGirl() {
@@ -164,7 +164,8 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
         if (drawable != null) {
             Bitmap bitmap = BitmapUtil.drawableToBitmap(drawable);
 
-            Observable.just(BitmapUtil.saveBitmap(bitmap, Constants.dir, "share.jpg", false))
+            addSubscribe(Observable
+                    .just(BitmapUtil.saveBitmap(bitmap, Constants.dir, "share.jpg", false))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(isSuccess -> {
@@ -179,7 +180,7 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
                         } else {
                             Snackbar.make(mRootView, "大爷，分享出错了哦~", Snackbar.LENGTH_LONG).show();
                         }
-                    }, RxUtils.IgnoreErrorProcessor);
+                    }, RxUtils.IgnoreErrorProcessor));
         }
     }
 

@@ -17,15 +17,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import coder.mylibrary.base.ActivityManager;
-import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
+import coder.prettygirls.app.PgBaseFragment;
 import coder.prettygirls.home.HomeActivity;
 import coder.prettygirls.util.SimpleAnimationListener;
 
 /**
  * Created by coder on 2016/6/28.
  */
-public class SplashFragment extends BaseFragment implements SplashContract.View {
+public class SplashFragment extends PgBaseFragment implements SplashContract.View {
 
     @BindView(R.id.splash)
     ImageView mSplashImg;
