@@ -11,10 +11,7 @@ import rx.Observable;
 public interface GirlsService {
 
     @GET("api/data/{type}/{count}/{page}")
-    Observable<GirlsBean> getGirls(
-            @Path("type") String type,
-            @Path("count") int count,
-            @Path("page") int page
-    );
+    Observable<GirlsBean> getGirls(@Path("type") String type, @Path("count") int count,
+            @Path("page") int page);
 
 }

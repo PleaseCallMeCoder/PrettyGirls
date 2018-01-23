@@ -24,6 +24,7 @@ import butterknife.Unbinder;
 import coder.mylibrary.base.BaseFragment;
 import coder.prettygirls.R;
 import coder.prettygirls.app.Constants;
+import coder.prettygirls.app.RxUtils;
 import coder.prettygirls.data.bean.GirlsBean;
 import coder.prettygirls.util.BitmapUtil;
 import coder.prettygirls.widget.PinchImageView;
@@ -154,7 +155,7 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
                     } else {
                         Snackbar.make(mRootView, "大爷，下载出错了哦~", Snackbar.LENGTH_LONG).show();
                     }
-                });
+                }, RxUtils.IgnoreErrorProcessor);
     }
 
     public void shareGirl() {
@@ -178,7 +179,7 @@ public class GirlFragment extends BaseFragment implements ViewPager.OnPageChange
                         } else {
                             Snackbar.make(mRootView, "大爷，分享出错了哦~", Snackbar.LENGTH_LONG).show();
                         }
-                    });
+                    }, RxUtils.IgnoreErrorProcessor);
         }
     }
 
