@@ -43,6 +43,7 @@ public class MyApplication extends Application {
                 .connectTimeout(3, TimeUnit.SECONDS)
                 .writeTimeout(3, TimeUnit.SECONDS)
                 .readTimeout(3, TimeUnit.SECONDS)
+                .addInterceptor(new LoggingInterceptor())
                 .build();
         return client;
     }
