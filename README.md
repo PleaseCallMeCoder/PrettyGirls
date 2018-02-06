@@ -18,21 +18,21 @@
 
 ## V1.0.0
 
-    初步完成整个App的开发。
+   初步完成整个App的开发。
 
 ## V1.1.0
 
-    - 优化 gradle 配置文件结构
+   - 优化 gradle 配置文件结构
 
-    - 优化冷启动速度
+   - 优化冷启动速度
 
-    - 优化 RxJava 生命周期管理
+   - 优化 RxJava 生命周期管理
 
-    - fix bug
+   - fix bug
 
-    - 添加 retrolambda 依赖
+   - 添加 retrolambda 依赖
 
-    - 添加 Checksytle、Findbugs、PMD 和 Android Lint 等代码检测工具以及使用脚本
+   - 添加 Checksytle、Findbugs、PMD 和 Android Lint 等代码检测工具以及使用脚本
 
 # 关于
 
