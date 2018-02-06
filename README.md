@@ -20,9 +20,19 @@
 
     初步完成整个App的开发。
 
-# 下个版本目标
+## V1.1.0
 
-    优化baselibrary，完善缓存策略
+    - 优化 gradle 配置文件结构
+
+    - 优化冷启动速度
+
+    - 优化 RxJava 生命周期管理
+
+    - fix bug
+
+    - 添加 retrolambda 依赖
+
+    - 添加 Checksytle、Findbugs、PMD 和 Android Lint 等代码检测工具以及使用脚本
 
 # 关于
 
@@ -60,5 +70,5 @@ compile 'com.android.support:design:23.0.1'————谷歌Material Design控�
 
 # 我的博客
 
-[点击查看我的博客](http://blog.renleicoder.com/)
+[点击查看我的博客](http://candy.renleicoder.com/)
 
