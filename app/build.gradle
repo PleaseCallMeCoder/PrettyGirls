@@ -16,12 +16,24 @@ android {
         versionCode config.versionCode
         versionName config.versionName
     }
+
     buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+
+            buildConfigField "String", "API_BASE_URL", "http://gank.io/"
+        }
+
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "API_BASE_URL", "http://gank.io/"
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

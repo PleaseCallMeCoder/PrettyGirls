@@ -1,6 +1,6 @@
 package coder.prettygirls.http;
 
-import coder.prettygirls.app.Constants;
+import coder.prettygirls.BuildConfig;
 import coder.prettygirls.app.MyApplication;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -21,7 +21,7 @@ public class GirlsRetrofit {
             synchronized (GirlsRetrofit.class) {
                 if (retrofit == null) {
                     retrofit = new Retrofit.Builder()
-                            .baseUrl(Constants.GANHUO_API)
+                            .baseUrl(BuildConfig.API_BASE_URL)
                             .addConverterFactory(GsonConverterFactory.create())
                             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                             .client(MyApplication.defaultOkHttpClient())
