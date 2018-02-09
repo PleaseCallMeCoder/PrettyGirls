@@ -13,7 +13,7 @@ cache:
 before_install:
 - chmod +x gradlew
 script:
-- ./gradlew assembleRelease
+- "./gradlew assembleRelease"
 before_deploy:
   - mv app/build/outputs/apk/release/app-release.apk
 deploy:
