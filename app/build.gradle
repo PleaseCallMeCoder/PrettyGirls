@@ -15,23 +15,38 @@ android {
         targetSdkVersion config.targetSdkVersion
         versionCode config.versionCode
         versionName config.versionName
+
+        buildConfigField "String", "API_BASE_URL", "\"http://gank.io/\""
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("../keys/prettygirls.jks")
+            storePassword System.getenv("KEYSTORE_PASS")
+            keyAlias System.getenv("ALIAS_NAME")
+            keyPassword System.getenv("ALIAS_PASS")
+        }
     }
 
     buildTypes {
         debug {
             minifyEnabled false
             debuggable true
-
-            buildConfigField "String", "API_BASE_URL", "http://gank.io/"
         }
 
         release {
-            minifyEnabled true
-            shrinkResources true
             debuggable false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-            buildConfigField "String", "API_BASE_URL", "http://gank.io/"
+            signingConfig signingConfigs.release
         }
     }
 
