@@ -3,6 +3,10 @@ jdk: oraclejdk8
 sudo: required
 dist: trusty
 group: deprecated-2017Q4
+licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 android:
   components:
   - build-tools-26.0.1
