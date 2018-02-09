@@ -5,16 +5,13 @@ dist: trusty
 group: deprecated-2017Q4
 android:
   components:
-  - tools
-  - platform-tools
-  - tools
   - build-tools-27.0.2
   - android-27
-  - extra-google-m2repository
   - extra-android-m2repository
   - extra-android-support
 before_install:
  - chmod +x gradlew
+ - bash .travis-android-license-bugfix.sh
 script:
   - ./gradlew assembleRelease
 before_deploy:
