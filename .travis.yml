@@ -15,7 +15,7 @@ before_install:
 script:
 - ./gradlew assembleRelease
 before_deploy:
-  - mv app/build/outputs/apk/app-release.apk
+  - mv app/build/outputs/apk/release/app-release.apk
 deploy:
   provider: releases
   api_key:
