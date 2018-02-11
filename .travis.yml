@@ -1,12 +1,4 @@
 language: android
-jdk: oraclejdk8
-sudo: required
-dist: trusty
-group: deprecated-2017Q4
-licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
 android:
   components:
   - tools
@@ -14,17 +6,3 @@ android:
   - android-27
   - extra-android-m2repository
   - extra-android-support
-before_install:
- - chmod +x gradlew
-script:
-  - ./gradlew assembleRelease
-before_deploy:
-  - mv app/build/outputs/apk/app-release.apk
-deploy:
-  provider: releases
-  api_key:
-    secure: Pcjq8KrPdjzuM1bbz5T/HIZr1pxno+ew6cBtagvnNrntUlomS6bHegrDkhjky8nmyjrzuzwCLE+2Br1Jr9gIe3TjfMFCDkCx6PvpH4VRTKn4qJJXS8d6VRdOhoG+mdlDIFfFUc5lUhzCgNGx2vIcHuMCASujtwu0sgwYwne+RaIQnJyZ2BRGZRoHCmcjGvQnQdwBZvMvKj1kHFdZLU1rhssloSyId+aFAeZxKOr4cGpCaEbvOkuk3gEgxme+J3oG2eUEeVPaHbx7dLNNE/Cj5p5BZHLz26XHzeV4yBd+posyLCak6Jtj1MNoaoNyJVf8zfgGDUKRkPi9oeZuJkoViTa9U6GLAZa4tHDOnWyd1aLal49rvJZppQZAgUJgjME6w3cWih+N27OAWQyIiA8Sbnlmo5dT7zw+TD6YFZxhTEnshT424pJNmI9N3QWVOW1XZa4sIRQ4hTmaBBUJM0EjygxmVVqTN3TSxi+2a3mV0ngPxPhedwlAmoLESX9fQ0nvVvlAzLK2Fh1UR5wV7fEa3PrFKBYQOTtYdFnDEitSWETQtGqEZVbdkSGQyLNUfnKBBg9Yuj6xdLbdCqgXnZZ4SptglXph5oMfuj5neuAzuar4KRnxxbyJNZ2UtSnU8t7JorcHxUh/epaYPRtGzY5ykpd8nlpkM3QCIN1sWZGrIuk=
-  file: app/build/outputs/apk/app-release.apk
-  skip_cleanup: true
-  on:
-    tags: true
