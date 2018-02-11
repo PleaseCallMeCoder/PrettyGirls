@@ -4,12 +4,12 @@ jdk: oraclejdk8
 notifications:
   email: false
 before_cache:
- - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
- - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
- directories:
- - $HOME/.gradle/caches/
- - $HOME/.gradle/wrapper/
+  directories:
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
 android:
   components:
   - tools
@@ -21,26 +21,26 @@ android:
   - extra-android-support
   - sys-img-armeabi-v7a-android-22
   licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
 before_install:
-  - yes | sdkmanager "platforms;android-27"
-  - chmod +x gradlew
+- yes | sdkmanager "platforms;android-27"
+- chmod +x gradlew
 before_script:
-  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+- echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+- emulator -avd test -no-skin -no-audio -no-window &
+- android-wait-for-emulator
+- adb shell input keyevent 82 &
 script:
-  - ./gradlew assembleRelease
+- ./gradlew assembleRelease
 before_deploy:
-  - mv app/build/outputs/apk/app-release.apk app/build/outputs/apk/buff.apk
+- mv app/build/outputs/apk/release/app-release.apk app/build/outputs/apk/release/buff.apk
 deploy:
   provider: releases
   api_key:
-    secure: Pcjq8KrPdjzuM1bbz5T/HIZr1pxno+ew6cBtagvnNrntUlomS6bHegrDkhjky8nmyjrzuzwCLE+2Br1Jr9gIe3TjfMFCDkCx6PvpH4VRTKn4qJJXS8d6VRdOhoG+mdlDIFfFUc5lUhzCgNGx2vIcHuMCASujtwu0sgwYwne+RaIQnJyZ2BRGZRoHCmcjGvQnQdwBZvMvKj1kHFdZLU1rhssloSyId+aFAeZxKOr4cGpCaEbvOkuk3gEgxme+J3oG2eUEeVPaHbx7dLNNE/Cj5p5BZHLz26XHzeV4yBd+posyLCak6Jtj1MNoaoNyJVf8zfgGDUKRkPi9oeZuJkoViTa9U6GLAZa4tHDOnWyd1aLal49rvJZppQZAgUJgjME6w3cWih+N27OAWQyIiA8Sbnlmo5dT7zw+TD6YFZxhTEnshT424pJNmI9N3QWVOW1XZa4sIRQ4hTmaBBUJM0EjygxmVVqTN3TSxi+2a3mV0ngPxPhedwlAmoLESX9fQ0nvVvlAzLK2Fh1UR5wV7fEa3PrFKBYQOTtYdFnDEitSWETQtGqEZVbdkSGQyLNUfnKBBg9Yuj6xdLbdCqgXnZZ4SptglXph5oMfuj5neuAzuar4KRnxxbyJNZ2UtSnU8t7JorcHxUh/epaYPRtGzY5ykpd8nlpkM3QCIN1sWZGrIuk=
-  file: app/build/outputs/apk/buff.apk
+    secure: W0etKNn2Xifi0SjZbfE/LPqks6P2XcxB5wDcUyLxELLYl0L9EGBnGJvxfU2Xnre+bXoiKK8LQWg149/tnaFV22WxsDIapet8YvkHkoYfH8bpeoyCUlqiSt1M5+gkx2ghWB9PF5Vd6hBZ3nanfUmp8MCXXSyXigi+8UHgDRwd4OPpAp/dy6pX4Q8JbQwF3LoRmyOLt08fyJkXTA5TEHazMpX4I1VOJ8UT2wqSvyOWb/vDGRpkf4SJBqZKoUg1XmoEROg7eU2McWn64sIWFjZ1AuiLmb2JPymeItkX9EJlCcl58dBP8fl8ba54MHk+jQibhn7qiTNgyhiHYTgy2VI5c/UEOi68PIvNgeO7IY4X43RpNJLO4fGp1RFLZSt3Q5D+bFtURbwm32vgVmexcI6BvwQY61lRKDICvxW4xdDxCPY9IuW6y7ObBYEgQlCzxfW3eudVvUq6WLHvI1KA3U/vQYXJihOVF6K4IqJ8JQoBoqgDUSJouiKYhd6kusm1Ouy/4nYPJnN7ssQC3rEHR/O/abU2EvGTW/qgwInNH0zL87idgdf5KfXtChMntouDeOISGHxyHeKJMCQL3l2tNsugZTg+KMniBoP+rcYRo+s/4zcCOVkJSs4WRr2IYxehVu7GP2BstD5x0wtw4jXfB7+58RyDFvZMb58cgUXJIfoXSKc=
+  file: app/build/outputs/apk/release/buff.apk
   skip_cleanup: true
   on:
     repo: PleaseCallMeCoder/PrettyGirls
