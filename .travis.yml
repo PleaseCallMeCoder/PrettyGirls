@@ -1,8 +1,6 @@
 language: android
-jdk: oraclejdk8
-sudo: required
-dist: precise
-group: stable
+jdk:
+  - oraclejdk8
 android:
   components:
   - toolos
@@ -15,3 +13,7 @@ licenses:
   - 'android-sdk-preview-license-.+'
   - 'android-sdk-license-.+'
   - 'google-gdk-license-.+'
+cache:
+  directories:
+  - $HOME/.m2
+  - $HOME/.gradle
