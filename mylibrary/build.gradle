@@ -14,17 +14,22 @@ android {
         versionCode config.versionCode
         versionName config.versionName
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildToolsVersion '26.0.2'
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {

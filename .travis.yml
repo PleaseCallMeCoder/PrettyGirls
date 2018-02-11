@@ -1,9 +1,15 @@
 language: android
-jdk:
-  - oraclejdk8
 sudo: required
+jdk: oraclejdk8
 notifications:
   email: false
+before_cache:
+ - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+ - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+ directories:
+ - $HOME/.gradle/caches/
+ - $HOME/.gradle/wrapper/
 android:
   components:
   - tools
@@ -13,10 +19,8 @@ android:
   - extra-android-m2repository
   - extra-android-support
   licenses:
-    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-preview-license-.+'
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
-cache:
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+before_install:
+  - chmod +x gradlew
