@@ -1,14 +1,12 @@
 language: android
 android:
   components:
-  - tools
   - build-tools-27.0.2
   - android-27
   - extra-android-m2repository
   - extra-android-support
-licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
 before_install:
  - chmod +x gradlew
+install:
+- echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
+- echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
