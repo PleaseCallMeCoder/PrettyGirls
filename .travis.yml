@@ -5,6 +5,8 @@ dist: precise
 group: stable
 android:
   components:
+  - toolos
+  - platform-tools
   - build-tools-27.0.2
   - android-27
   - extra-android-m2repository

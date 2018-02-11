@@ -30,11 +30,15 @@ android {
     }
 
     signingConfigs {
-        release {
-            storeFile file("../keys/prettygirls.jks")
-            storePassword System.getenv("KEYSTORE_PASS")
-            keyAlias System.getenv("ALIAS_NAME")
-            keyPassword System.getenv("ALIAS_PASS")
+        try {
+            release {
+                storeFile file("../keys/prettygirls.jks")
+                storePassword project.hasProperty("KEYSTORE_PASS") ? KEYSTORE_PASS : System.getenv("KEYSTORE_PASS")
+                keyAlias project.hasProperty("ALIAS_NAME") ? ALIAS_NAME : System.getenv("ALIAS_NAME")
+                keyPassword project.hasProperty("ALIAS_PASS") ? ALIAS_PASS : System.getenv("ALIAS_PASS")
+            }
+        } catch (ex) {
+            throw new Exception("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in local.properties.")
         }
     }
 
