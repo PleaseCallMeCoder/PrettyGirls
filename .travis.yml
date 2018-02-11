@@ -43,4 +43,5 @@ deploy:
   file: app/build/outputs/apk/app-release.apk
   skip_cleanup: true
   on:
-    repo: true
+    repo: PleaseCallMeCoder/PrettyGirls
+    tags: true
