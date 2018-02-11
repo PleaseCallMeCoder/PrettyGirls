@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/PleaseCallMeCoder/PrettyGirls.svg?branch=v1.2.0)](https://travis-ci.org/PleaseCallMeCoder/PrettyGirls)
+
 # PrettyGirls
 
 ![](http://i.imgur.com/ommnZui.png)
@@ -12,7 +14,7 @@
 
 ![](http://i.imgur.com/HI3PipV.png)
 
-[下载](http://pre.im/A7n1)
+[下载](https://github.com/PleaseCallMeCoder/PrettyGirls/releases/tag/v1.2.0)
 
 # 更新日志
 
@@ -23,16 +25,15 @@
 ## V1.1.0
 
    - 优化 gradle 配置文件结构
-
    - 优化冷启动速度
-
    - 优化 RxJava 生命周期管理
-
    - fix bug
-
    - 添加 retrolambda 依赖
-
    - 添加 Checksytle、Findbugs、PMD 和 Android Lint 等代码检测工具以及使用脚本
+
+## V1.2.0
+
+- Add  CI
 
 # 关于
 
