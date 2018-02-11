@@ -14,7 +14,7 @@
 
 <div align="left">
 
-<img src="http://i.imgur.com/T9U8g5b.jpg" width = "533px" height="300px" alt=""><img src="http://i.imgur.com/ivGy3ga.jpg" width = "533px" height="300px" alt=""><img src="http://i.imgur.com/HI3PipV.png" width = "533px" height="300px" alt="">
+<img src="http://i.imgur.com/T9U8g5b.jpg" height="300px" alt=""><img src="http://i.imgur.com/ivGy3ga.jpg" height="300px" alt=""><img src="http://i.imgur.com/HI3PipV.png" height="300px" alt="">
 
 </div>
 
