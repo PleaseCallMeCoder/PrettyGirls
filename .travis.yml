@@ -14,13 +14,7 @@ licenses:
   - 'android-sdk-license-.+'
   - 'google-gdk-license-.+'
 install:
-  - echo y | android update sdk -u -a -t tools
-  - echo y | android update sdk -u -a -t platform-tools
-  - echo y | android update sdk -u -a -t build-tools-27.0.2
-  - echo y | android update sdk -u -a -t android-27
-  - echo y | android update sdk -u -a -t extra-google-m2repository
-  - echo y | android update sdk -u -a -t extra-android-m2repository
-  - echo y | android update sdk -u -a -t extra-android-support
+  - echo yes | sdkmanager --licenses
 cache:
   directories:
   - $HOME/.m2
