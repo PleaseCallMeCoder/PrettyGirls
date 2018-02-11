@@ -1,12 +1,6 @@
-[![Build Status](https://travis-ci.org/PleaseCallMeCoder/PrettyGirls.svg?branch=v1.2.0)](https://travis-ci.org/PleaseCallMeCoder/PrettyGirls)
-
 # PrettyGirls
 
-<div align="left">
-
-<img src="http://i.imgur.com/ommnZui.png" height="150px" width="150px" alt="">
-
-</div>
+[![Build Status](https://travis-ci.org/PleaseCallMeCoder/PrettyGirls.svg?branch=v1.2.0)](https://travis-ci.org/PleaseCallMeCoder/PrettyGirls)
 
 一个基于MVP+Retrofit+RxJava+MaterialDesign和gank.io的MeiZhi客户端。
 
