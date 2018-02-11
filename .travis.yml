@@ -1,14 +1,18 @@
 language: android
+jdk: oraclejdk8
+sudo: required
+dist: precise
+group: stable
 android:
   components:
   - build-tools-27.0.2
   - android-27
   - extra-android-m2repository
   - extra-android-support
-  licenses:
-      - 'android-sdk-preview-license-.+'
-      - 'android-sdk-license-.+'
-      - 'google-gdk-license-.+'
+licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 before_install:
  - chmod +x gradlew
 script:
