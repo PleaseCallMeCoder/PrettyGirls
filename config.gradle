@@ -3,10 +3,10 @@ apply plugin: 'me.tatarka.retrolambda'
 
 ext {
     android = [
-            compileSdkVersion: 26,
-            buildToolsVersion: "26.0.1",
+            compileSdkVersion: 27,
+            buildToolsVersion: "27.0.2",
             minSdkVersion    : 15,
-            targetSdkVersion : 26,
+            targetSdkVersion : 27,
             versionCode      : 1,
             versionName      : '1.0'
     ]
